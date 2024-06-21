@@ -1,15 +1,21 @@
 import 'dart:io';
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/login/login_screen.dart';
 import 'package:location_agent/presentation/screens/login/widgets/appbarlogin.dart';
 import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
+import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
+import 'package:location_agent/presentation/widgets/dialog/ValidationDialog.dart';
+import 'package:location_agent/presentation/widgets/dialog/loading.dialog.dart';
 import 'package:location_agent/presentation/widgets/inputs/nameField.dart';
 import 'package:location_agent/presentation/widgets/inputs/passwordTextField.dart';
 import 'package:location_agent/presentation/widgets/inputs/simplePhoneNumberField.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignupStep1 extends StatefulWidget {
   const SignupStep1({
@@ -27,6 +33,8 @@ final TextEditingController confirmPasswordController = TextEditingController();
 String? nameError;
 String? passwordError;
 String? submitError;
+String? pays;
+String? codePays = "+243";
 
 class _SignupStep1State extends State<SignupStep1> {
   void shareContent(String content) {
@@ -60,8 +68,8 @@ class _SignupStep1State extends State<SignupStep1> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
-                            "Inscription",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            "Inscription agent",
+                            style: TextStyle(fontWeight: FontWeight.w400),
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -203,13 +211,15 @@ class _SignupStep1State extends State<SignupStep1> {
                               ));
                         },
                       ),
-                    
+
                       BlocBuilder<SignupCubit, SignupState>(
                           builder: (context, state) {
                         return Container(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),
-                            margin: const EdgeInsets.only(bottom: 15,),
+                            margin: const EdgeInsets.only(
+                              bottom: 15,
+                            ),
                             child: SizedBox(
                               height: 50.0,
                               child: TransAcademiaPhoneNumber(
@@ -268,149 +278,122 @@ class _SignupStep1State extends State<SignupStep1> {
                                 const EdgeInsets.symmetric(horizontal: 20.0),
                             child: GestureDetector(
                               onTap: () async {
-                                // SharedPreferences prefs =
-                                //     await SharedPreferences.getInstance();
-                                // prefs.clear();
-                                // prefs.setBool("introduction", false);
+                              
 
-                                // if (state.field!["password"] ==
-                                //     state.field!["confirmPassword"]) {
-                                //   if (phoneController.text == "") {
-                                //     ValidationDialog.show(context,
-                                //         "veuillez saisir le numéro de téléphone",
-                                //         () {
-                                //       if (kDebugMode) {
-                                //         print("modal");
-                                //       }
-                                //     });
-                                //     return;
-                                //   }
+                                if (state.field!["nom"] == "") {
+                                  ValidationDialog.show(context,
+                                      "Veuillez saisir votre nom complet", () {
+                                    if (kDebugMode) {
+                                      print("modal");
+                                    }
+                                  });
+                                  return;
+                                }
 
-                                //   if (state.field!["nom"] == "") {
-                                //     ValidationDialog.show(context,
-                                //         "Veuillez saisir votre nom complet",
-                                //         () {
-                                //       if (kDebugMode) {
-                                //         print("modal");
-                                //       }
-                                //     });
-                                //     return;
-                                //   }
+                               
+                                if ((state.field!["phone"].substring(0, 1) ==
+                                            "0" ||
+                                        state.field!["phone"].substring(0, 1) ==
+                                            "+") &&
+                                    codePays == "+243") {
+                                  ValidationDialog.show(context,
+                                      "Veuillez saisir le numéro avec le format valide, exemple: (826016607).",
+                                      () {
+                                    print("modal");
+                                  });
+                                  return;
+                                }
+                                if (state.field!["phone"].length < 8 &&
+                                    codePays == "+243") {
+                                  ValidationDialog.show(context,
+                                      "Le numéro ne doit pas avoir moins de 9 caractères, exemple: (826016607).",
+                                      () {
+                                    print("modal");
+                                  });
+                                  return;
+                                }
 
-                                //   if (!state.field!["email"].contains("@")) {
-                                //     ValidationDialog.show(context,
-                                //         "Le format du mail est incorrect",
-                                //         () {
-                                //       if (kDebugMode) {
-                                //         print("modal");
-                                //       }
-                                //     });
-                                //     return;
-                                //   }
-                                //   if ((phoneController.text.substring(0, 1) ==
-                                //               "0" ||
-                                //           phoneController.text
-                                //                   .substring(0, 1) ==
-                                //               "+") &&
-                                //       codePays == "+243") {
-                                //     ValidationDialog.show(context,
-                                //         "Veuillez saisir le numéro avec le format valide, exemple: (826016607).",
-                                //         () {
-                                //       print("modal");
-                                //     });
-                                //     return;
-                                //   }
-                                //   if (phoneController.text.length < 8 &&
-                                //       codePays == "+243") {
-                                //     ValidationDialog.show(context,
-                                //         "Le numéro ne doit pas avoir moins de 9 caractères, exemple: (826016607).",
-                                //         () {
-                                //       print("modal");
-                                //     });
-                                //     return;
-                                //   }
+                                if (state.field!["password"] == "") {
+                                  ValidationDialog.show(context,
+                                      "Veuillez saisir le mot de passe", () {
+                                    if (kDebugMode) {
+                                      print("modal");
+                                    }
+                                  });
+                                  return;
+                                }
 
-                                //   if (state.field!["password"] == "") {
-                                //     ValidationDialog.show(context,
-                                //         "Veuillez saisir le mot de passe", () {
-                                //       if (kDebugMode) {
-                                //         print("modal");
-                                //       }
-                                //     });
-                                //     return;
-                                //   }
+                                  if (state.field!["password"] != state.field!["confirmPassword"]) {
+                                  ValidationDialog.show(context,
+                                      "Les deux mots de passe ne correspond pas ", () {
+                                    if (kDebugMode) {
+                                      print("modal");
+                                    }
+                                  });
+                                  return;
+                                }
+                                
 
-                                //   // check connexion
-                                //   try {
-                                //     final response =
-                                //         await InternetAddress.lookup(
-                                //             'www.google.com');
-                                //     if (response.isNotEmpty) {
-                                //       print("connected");
-                                //     }
-                                //   } on SocketException {
-                                //     ValidationDialog.show(
-                                //         context, "Pas de connexion internet !",
-                                //         () {
-                                //       if (kDebugMode) {
-                                //         print("modal");
-                                //       }
-                                //     });
-                                //     return;
-                                //   }
+                                // check connexion
+                                try {
+                                  final response = await InternetAddress.lookup(
+                                      'www.google.com');
+                                  if (response.isNotEmpty) {
+                                    print("connected");
+                                  }
+                                } on SocketException {
+                                  ValidationDialog.show(
+                                      context, "Pas de connexion internet !",
+                                      () {
+                                    if (kDebugMode) {
+                                      print("modal");
+                                    }
+                                  });
+                                  return;
+                                }
 
-                                //   BlocProvider.of<SignupCubit>(context)
-                                //       .updateField(context,
-                                //           field: "phone",
-                                //           data: phoneController.text);
+                                var data = {
+                                  "username": state.field!['prenom'],
+                                  "firstname": state.field!['nom'],
+                                  "lastname": state.field!['postnom'],
+                                  "pwd": state.field!['password'],
+                                  "pwd_repeat": state.field!["confirmPassword"],
+                                  "mobile_no": state.field!["phone"],
+                                  "grade": state.field!["grade"],
+                                  "poste": state.field!["poste"],
+                                  "is_root": true
+                                };
 
-                                //   var data = {
-                                //     "photo": "default",
-                                //     "username": state.field!['nom'],
-                                //     "password": state.field!['password'],
-                                //     "number": codePays! + phoneController.text,
-                                //     "email": state.field!['email']
-                                //   };
+                                print(data);
 
-                                //   TransAcademiaLoadingDialog.show(context);
+                                TransAcademiaLoadingDialog.show(context);
 
-                                //   Map<String, dynamic> result =
-                                //       await SignUpRepository.createAccount(
-                                //           data);
+                                Map<String, dynamic> result =
+                                    await SignUpRepository.signupAgent(data);
 
-                                //   int statusCode = result['status'];
-                                //   String? message = result['message'];
+                                int statusCode = result['status'];
+                                String? message = result['message'];
 
-                                //   if (statusCode == 200) {
-                                //     BlocProvider.of<SignupCubit>(context)
-                                //         .updateField(context,
-                                //             field: "password", data: "");
-                                //     BlocProvider.of<SignupCubit>(context)
-                                //         .updateField(context,
-                                //             field: "confirmPassword", data: "");
-                                //     BlocProvider.of<SignupCubit>(context)
-                                //         .updateField(context,
-                                //             field: "nom", data: "");
-                                //     phoneController.text = "";
+                                if (statusCode == 200) {
+                                  BlocProvider.of<SignupCubit>(context)
+                                      .updateField(context,
+                                          field: "password", data: "");
+                                  BlocProvider.of<SignupCubit>(context)
+                                      .updateField(context,
+                                          field: "confirmPassword", data: "");
+                                  BlocProvider.of<SignupCubit>(context)
+                                      .updateField(context,
+                                          field: "nom", data: "");
+                                  state.field!["phone"] = "";
 
-                                //     Navigator.of(context)
-                                //         .pushNamedAndRemoveUntil('/login',
-                                //             (Route<dynamic> route) => false);
-                                //   } else {
-                                //     TransAcademiaLoadingDialog.stop(context);
-                                //     TransAcademiaDialogError.show(
-                                //         context, message, "login");
-                                //   }
-                                // } else {
-                                //   ValidationDialog.show(context,
-                                //       "Les deux mots de passe ne correspondent pas",
-                                //       () {
-                                //     if (kDebugMode) {
-                                //       print("modal");
-                                //     }
-                                //   });
-                                //   return;
-                                // }
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      '/login',
+                                      (Route<dynamic> route) => false);
+                                } else {
+                                  TransAcademiaLoadingDialog.stop(context);
+                                  TransAcademiaDialogError.show(
+                                      context, message, "login");
+                                }
 
                                 //send data in api
 

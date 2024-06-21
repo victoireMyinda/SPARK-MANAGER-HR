@@ -10,7 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:location_agent/utils/string.util.dart';
 
 class SignUpRepository {
-  static Future<Map<String, dynamic>> signupAgentCream(Map data) async {
+  static Future<Map<String, dynamic>> signupAgent(Map data) async {
     // Vérifier la connexion Internet
     try {
       final response = await InternetAddress.lookup('www.google.com');
@@ -25,8 +25,10 @@ class SignUpRepository {
 
     var headers = {'Content-Type': 'application/json'};
 
-    var request = http.Request('POST',
-        Uri.parse("https://iglace.eyanofinance.org/api/v1/auth/signup"));
+    var request = http.Request(
+        'POST',
+        Uri.parse(
+            "https://spark-manager-rh-764791cdc043.herokuapp.com/api/v1/user/agent/signup"));
 
     request.body = json.encode(data);
 
@@ -40,14 +42,11 @@ class SignUpRepository {
 
     int statusCode = responseJson['code'];
 
-    if (statusCode == 201) {
+    if (statusCode == 200) {
       Map? responseData = responseJson['data'];
       String? message = responseJson['message'];
-      //prefs.setString("token", token.toString());
+
       return {"status": statusCode, "data": responseData, "message": message};
-    } else if (statusCode == 400) {
-      String? message = responseJson['message'];
-      return {"status": statusCode, "message": message};
     } else {
       String? message = responseJson['message'];
       return {"status": statusCode, "message": message};
@@ -813,68 +812,6 @@ class SignUpRepository {
       return {"status": response.statusCode, "data": data};
     } else {
       return {"status": response.statusCode};
-    }
-  }
-
-  static Future<Map<String, dynamic>> signup(
-      Map data, BuildContext context) async {
-    // Vérifier la connexion Internet
-    try {
-      final response = await InternetAddress.lookup('www.google.com');
-      if (response.isNotEmpty) {
-        if (kDebugMode) {
-          print("connected");
-        }
-      }
-    } on SocketException catch (err) {
-      return {"status": 0, "message": "Pas de connexion internet"};
-    }
-
-    var headers = {'Content-Type': 'application/json'};
-
-    var request = http.Request(
-        'POST', Uri.parse("${StringFormat.baseUrl}api/user.php/parent"));
-
-    request.body = json.encode({
-      "nom": data["nom"].toString(),
-      "prenom": data["prenom"].toString(),
-      "postnom": data["postnom"].toString(),
-      "sexe": data["sexe"].toString(),
-      "telephone": data["phone"].toString(),
-      "avenue": data["avenue"].toString(),
-      "numero": data["numeroAdresse"].toString(),
-      "email": data["email"].toString(),
-      "Id_province": data["Id_province"].toString(),
-      "Id_commune": data["Id_commune"].toString(),
-      "Id_ville": data["Id_ville"].toString(),
-      "Id_user_created_at": 1,
-      "pwd": data["password"].toString(),
-      "pwd_confirm": data["confirmPassword"].toString()
-    });
-
-    request.headers.addAll(headers);
-
-    http.StreamedResponse response = await request.send();
-
-    String responseBody = await response.stream.bytesToString();
-
-    Map<String, dynamic> responseJson = json.decode(responseBody);
-
-    int statusCode = responseJson['code'];
-
-    if (statusCode == 201) {
-      String? token = responseJson['token'];
-      Map? data = responseJson['data'];
-
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString("token", token.toString());
-      return {"token": token, "status": statusCode, "data": data};
-    } else if (statusCode == 400) {
-      String message = "Désolé ! Ce numéro est déjà associé à un compte.";
-      return {"status": statusCode, "message": message};
-    } else {
-      String message = responseJson['message'];
-      return {"status": statusCode, "message": message};
     }
   }
 
