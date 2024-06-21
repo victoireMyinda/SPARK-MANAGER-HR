@@ -172,22 +172,22 @@ class _HomeScreenState extends State<HomeScreen> {
   //   });
   // }
 
-  getProfilAgent() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  // getProfilAgent() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    BlocProvider.of<SignupCubit>(context)
-        .updateField(context, field: "phone", data: prefs.getString('phone'));
-    BlocProvider.of<SignupCubit>(context)
-        .updateField(context, field: "idAgent", data: prefs.getString('id'));
-    BlocProvider.of<SignupCubit>(context)
-        .updateField(context, field: "nom", data: prefs.getString('nom'));
-    BlocProvider.of<SignupCubit>(context).updateField(context,
-        field: "postnom", data: prefs.getString('postnom'));
-    BlocProvider.of<SignupCubit>(context)
-        .updateField(context, field: "prenom", data: prefs.getString('prenom'));
-    BlocProvider.of<SignupCubit>(context)
-        .updateField(context, field: "role", data: prefs.getString('fonction'));
-  }
+  //   BlocProvider.of<SignupCubit>(context)
+  //       .updateField(context, field: "phone", data: prefs.getString('phone'));
+  //   BlocProvider.of<SignupCubit>(context)
+  //       .updateField(context, field: "idAgent", data: prefs.getString('id'));
+  //   BlocProvider.of<SignupCubit>(context)
+  //       .updateField(context, field: "nom", data: prefs.getString('nom'));
+  //   BlocProvider.of<SignupCubit>(context).updateField(context,
+  //       field: "postnom", data: prefs.getString('postnom'));
+  //   BlocProvider.of<SignupCubit>(context)
+  //       .updateField(context, field: "prenom", data: prefs.getString('prenom'));
+  //   BlocProvider.of<SignupCubit>(context)
+  //       .updateField(context, field: "role", data: prefs.getString('fonction'));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -223,16 +223,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               BlocBuilder<SignupCubit, SignupState>(
                                 builder: (context, state) {
-                                  return const Text("Admin");
+                                  return Text(state.field!["data"]["grade"]);
                                 },
                               ),
                               const SizedBox(height: 6),
                               BlocBuilder<SignupCubit, SignupState>(
                                 builder: (context, state) {
-                                  return const Text(
-                                    "Teddy Biringingwa",
+                                  return  Text(
+                                    state.field!["data"]["firstname"] + " " + state.field!["data"]["lastname"],
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                        const TextStyle(fontWeight: FontWeight.bold),
                                   );
                                 },
                               )

@@ -14,6 +14,7 @@ import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogLo
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
 import 'package:location_agent/presentation/widgets/dialog/ValidationDialog.dart';
 import 'package:location_agent/presentation/widgets/dialog/loading.dialog.dart';
+import 'package:location_agent/presentation/widgets/inputs/nameField.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:location_agent/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
@@ -43,38 +44,17 @@ class _LoginScreenState extends State<LoginScreen> {
   var androidState;
   var iosState;
   var dataAbonnement = [], prixCDF, prixUSD;
+  String? pays;
+  String? codePays = "+243";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<AbonnementCubit>(context).initFormPayment();
-    print(AdaptiveTheme.of(context).mode.name);
-    BlocProvider.of<SignupCubit>(context)
-        .updateField(context, field: "password", data: "");
-    // checkVersion();
-    getDataListAbonnement();
+   
   }
 
-  void getDataListAbonnement() async {
-    await http.post(Uri.parse("${stateInfoUrl}Trans_Liste_Abonement.php"),
-        body: {'App_name': "app", 'token': "2022"}).then((response) {
-      var data = json.decode(response.body);
 
-//      print(data);
-
-      dataAbonnement =
-          data['donnees'].where((e) => e['Type'] == 'Prelevement').toList();
-      prixUSD = dataAbonnement[0]['prix_USD'];
-
-      BlocProvider.of<SignupCubit>(context).updateField(context,
-          field: "prixCDF", data: dataAbonnement[0]['prix_CDF']);
-      BlocProvider.of<SignupCubit>(context).updateField(context,
-          field: "prixUSD", data: dataAbonnement[0]['prix_USD']);
-      BlocProvider.of<SignupCubit>(context).updateField(context,
-          field: "abonnement", data: dataAbonnement[0]['id']);
-    });
-  }
 
   // checkVersion() async {
   //   WidgetsFlutterBinding.ensureInitialized();
@@ -161,8 +141,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
-                            "Agent Localisation",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            "Connexion ",
+                            style: TextStyle(fontWeight: FontWeight.w400),
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -186,22 +166,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 10,
                       ),
                       BlocBuilder<SignupCubit, SignupState>(
-                          builder: (context, state) {
-                        return Container(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
-                            margin: const EdgeInsets.only(bottom: 15, top: 20),
-                            child: SizedBox(
-                              height: 50.0,
-                              child: TransAcademiaPhoneNumber(
-                                number: 20,
-                                controller: phoneController,
-                                hintText: "Numéro de téléphone",
-                                field: "phone",
-                                fieldValue: state.field!["phone"],
-                              ),
-                            ));
-                      }),
+                        builder: (context, state) {
+                          return Container(
+                              margin: const EdgeInsets.only(bottom: 15),
+                              // color: Colors.white,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                ),
+                                child: TransAcademiaNameInput(
+                                  controller: nameController,
+                                  hintText: "Nom  d'utilisateur",
+                                  color: Colors.white,
+                                  label: "Nom  d'utilisateur",
+                                  field: "prenom",
+                                  fieldValue: state.field!["prenom"],
+                                ),
+                              ));
+                        },
+                      ),
                       const SizedBox(
                         height: 5.0,
                       ),
@@ -232,119 +219,75 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),
                             child: GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    '/routestack',
-                                    (Route<dynamic> route) => false);
+                              onTap: () async {
+                                if (state.field!["prenom"] == "") {
+                                  ValidationDialog.show(context,
+                                      "veuillez saisir le nom d'utilisateur",
+                                      () {
+                                    if (kDebugMode) {
+                                      print("modal");
+                                    }
+                                  });
+                                  return;
+                                }
+
+                                if (state.field!["password"] == "") {
+                                  ValidationDialog.show(context,
+                                      "Veuillez saisir le mot de passe", () {
+                                    if (kDebugMode) {
+                                      print("modal");
+                                    }
+                                  });
+                                  return;
+                                }
+
+                                // check connexion
+                                try {
+                                  final response = await InternetAddress.lookup(
+                                      'www.google.com');
+                                  if (response.isNotEmpty) {
+                                    print("connected");
+                                  }
+                                } on SocketException {
+                                  ValidationDialog.show(
+                                      context, "Pas de connexion internet !",
+                                      () {
+                                    if (kDebugMode) {
+                                      print("modal");
+                                    }
+                                  });
+                                  return;
+                                }
+                                Map datalogin = {
+                                  "login": state.field!["prenom"],
+                                  "pwd": state.field!["password"]
+                                };
+
+                                // print(datalogin);
+
+                                TransAcademiaLoadingDialog.show(context);
+                                Map<String, dynamic> result =
+                                    await SignUpRepository.login(datalogin);
+                                // String? token = result['token'];
+                                int statusCode = result['status'];
+                                Map? data = result['data'];
+
+                                if (statusCode == 200) {
+                                  BlocProvider.of<SignupCubit>(context)
+                                      .updateField(context,
+                                          field: "data", data: data);
+
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      '/routestack',
+                                      (Route<dynamic> route) => false);
+                                } else {
+                                  TransAcademiaLoadingDialog.stop(context);
+                                  TransAcademiaDialogError.show(
+                                      context,
+                                      "Nom d'utilisateur ou mot de passe incorrect",
+                                      "login");
+                                }
                               },
-                              // onTap: () async {
-                              //   print("moi");
-                              //   SharedPreferences prefs =
-                              //       await SharedPreferences.getInstance();
-                              //   prefs.clear();
-                              //   prefs.setBool("introduction", false);
-
-                              //   if (phoneController.text == "") {
-                              //     ValidationDialog.show(context,
-                              //         "veuillez saisir le numéro de téléphone",
-                              //         () {
-                              //       if (kDebugMode) {
-                              //         print("modal");
-                              //       }
-                              //     });
-                              //     return;
-                              //   }
-                              //   if ((phoneController.text.substring(0, 1) ==
-                              //               "0" ||
-                              //           phoneController.text.substring(0, 1) ==
-                              //               "+") &&
-                              //       codePays == "+243") {
-                              //     ValidationDialog.show(context,
-                              //         "Veuillez saisir le numéro avec le format valide, exemple: (826016607).",
-                              //         () {
-                              //       print("modal");
-                              //     });
-                              //     return;
-                              //   }
-                              //   if (phoneController.text.length < 8 &&
-                              //       codePays == "+243") {
-                              //     ValidationDialog.show(context,
-                              //         "Le numéro ne doit pas avoir moins de 9 caractères, exemple: (826016607).",
-                              //         () {
-                              //       print("modal");
-                              //     });
-                              //     return;
-                              //   }
-
-                              //   if (state.field!["password"] == "") {
-                              //     ValidationDialog.show(context,
-                              //         "Veuillez saisir le mot de passe", () {
-                              //       if (kDebugMode) {
-                              //         print("modal");
-                              //       }
-                              //     });
-                              //     return;
-                              //   }
-
-                              //   // check connexion
-                              //   try {
-                              //     final response = await InternetAddress.lookup(
-                              //         'www.google.com');
-                              //     if (response.isNotEmpty) {
-                              //       print("connected");
-                              //     }
-                              //   } on SocketException {
-                              //     ValidationDialog.show(
-                              //         context, "Pas de connexion internet !",
-                              //         () {
-                              //       if (kDebugMode) {
-                              //         print("modal");
-                              //       }
-                              //     });
-                              //     return;
-                              //   }
-                              //   BlocProvider.of<SignupCubit>(context)
-                              //       .updateField(context,
-                              //           field: "phonePayment",
-                              //           data: codePays! + phoneController.text);
-                              //   print(state.field!["phonePayment"]);
-                              //   //send data in api
-                              //   TransAcademiaLoadingDialog.show(context);
-                              //   Map<String, dynamic> result =
-                              //       await SignUpRepository.login(
-                              //           codePays! + phoneController.text,
-                              //           state.field!["password"]);
-                              //   String? token = result['token'];
-                              //   int statusCode = result['status'];
-                              //   Map? data = result['data'];
-
-                              //   if (statusCode == 200) {
-                              //     prefs.setString('token', token.toString());
-                              //     prefs.setString(
-                              //         'password', state.field!["password"]);
-                              //     BlocProvider.of<SignupCubit>(context)
-                              //         .updateField(context,
-                              //             field: "token", data: token);
-                              //     BlocProvider.of<SignupCubit>(context)
-                              //         .updateField(context,
-                              //             field: "data", data: data);
-                              //     BlocProvider.of<SignupCubit>(context)
-                              //         .updateField(context,
-                              //             field: "role", data: "user");
-
-                              //     Navigator.of(context).pushNamedAndRemoveUntil(
-                              //         '/routestack',
-                              //         (Route<dynamic> route) => false);
-                              //   } else {
-                              //     TransAcademiaLoadingDialog.stop(context);
-                              //     TransAcademiaDialogError.show(
-                              //         context,
-                              //         "Nom d'utilisateur ou mot de passe incorrect",
-                              //         "login");
-                              //   }
-
-                              // },
-
                               child: const ButtonTransAcademia(
                                   title: "Se connecter"),
                             ),

@@ -278,8 +278,6 @@ class _SignupStep1State extends State<SignupStep1> {
                                 const EdgeInsets.symmetric(horizontal: 20.0),
                             child: GestureDetector(
                               onTap: () async {
-                              
-
                                 if (state.field!["nom"] == "") {
                                   ValidationDialog.show(context,
                                       "Veuillez saisir votre nom complet", () {
@@ -290,7 +288,6 @@ class _SignupStep1State extends State<SignupStep1> {
                                   return;
                                 }
 
-                               
                                 if ((state.field!["phone"].substring(0, 1) ==
                                             "0" ||
                                         state.field!["phone"].substring(0, 1) ==
@@ -323,16 +320,17 @@ class _SignupStep1State extends State<SignupStep1> {
                                   return;
                                 }
 
-                                  if (state.field!["password"] != state.field!["confirmPassword"]) {
+                                if (state.field!["password"] !=
+                                    state.field!["confirmPassword"]) {
                                   ValidationDialog.show(context,
-                                      "Les deux mots de passe ne correspond pas ", () {
+                                      "Les deux mots de passe ne correspond pas ",
+                                      () {
                                     if (kDebugMode) {
                                       print("modal");
                                     }
                                   });
                                   return;
                                 }
-                                
 
                                 // check connexion
                                 try {
@@ -364,7 +362,7 @@ class _SignupStep1State extends State<SignupStep1> {
                                   "is_root": true
                                 };
 
-                                print(data);
+                                // print(data);
 
                                 TransAcademiaLoadingDialog.show(context);
 
@@ -375,31 +373,14 @@ class _SignupStep1State extends State<SignupStep1> {
                                 String? message = result['message'];
 
                                 if (statusCode == 200) {
-                                  BlocProvider.of<SignupCubit>(context)
-                                      .updateField(context,
-                                          field: "password", data: "");
-                                  BlocProvider.of<SignupCubit>(context)
-                                      .updateField(context,
-                                          field: "confirmPassword", data: "");
-                                  BlocProvider.of<SignupCubit>(context)
-                                      .updateField(context,
-                                          field: "nom", data: "");
-                                  state.field!["phone"] = "";
-
                                   Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/login',
+                                      '/routestack',
                                       (Route<dynamic> route) => false);
                                 } else {
                                   TransAcademiaLoadingDialog.stop(context);
                                   TransAcademiaDialogError.show(
-                                      context, message, "login");
+                                      context, message, "Signup");
                                 }
-
-                                //send data in api
-
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    '/routestack',
-                                    (Route<dynamic> route) => false);
                               },
                               child: const ButtonTransAcademia(
                                   title: "S'inscrire"),

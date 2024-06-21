@@ -53,12 +53,14 @@ class SignUpRepository {
     }
   }
 
-  static Future<Map<String, dynamic>> loginCream(Map data) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Future<Map<String, dynamic>> login(Map data) async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'POST', Uri.parse("https://iglace.eyanofinance.org/api/v1/auth/login"));
+        'POST',
+        Uri.parse(
+            "https://spark-manager-rh-764791cdc043.herokuapp.com/api/v1/user/agent/login"));
 
     request.body = json.encode(data);
     request.headers.addAll(headers);

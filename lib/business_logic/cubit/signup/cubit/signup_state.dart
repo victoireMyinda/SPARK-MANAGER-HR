@@ -18,6 +18,7 @@ Map? initialState() {
     'volumeProduit': "",
     'prixProduit': "",
     'qteProduit': "",
+    'data': {},
     'provinceDataKelasi': [],
     'villeDataKelasi': [],
     'communeDataKelasi': [],
