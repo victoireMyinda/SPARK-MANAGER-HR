@@ -1,31 +1,22 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:convert';
 import 'dart:io';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:location_agent/constants/my_colors.dart';
 import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/login/widgets/appbarlogin.dart';
 import 'package:location_agent/presentation/screens/signupagent/signupagent.dart';
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
-import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogLoginPayment.dart';
-import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
 import 'package:location_agent/presentation/widgets/dialog/ValidationDialog.dart';
 import 'package:location_agent/presentation/widgets/dialog/loading.dialog.dart';
 import 'package:location_agent/presentation/widgets/inputs/nameField.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
-import 'package:location_agent/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:location_agent/presentation/screens/home/home_screen.dart';
 import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
 import 'package:location_agent/sizeconfig.dart';
 import 'package:location_agent/presentation/widgets/inputs/passwordTextField.dart';
-import 'package:location_agent/presentation/widgets/inputs/simplePhoneNumberField.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -135,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 20,
+                        height: 40,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -322,28 +313,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("Pas de compte ?"),
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const SignupStep1(),
-                                  ));
-                            },
-                            child: const Text(
-                              "S'inscrire",
-                              style: TextStyle(color: Colors.lightGreen),
-                            ),
-                          ),
-                        ],
-                      )
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     const Text("Pas de compte ?"),
+                      //     const SizedBox(
+                      //       width: 4,
+                      //     ),
+                      //     InkWell(
+                      //       onTap: () {
+                      //         Navigator.push(
+                      //             context,
+                      //             MaterialPageRoute(
+                      //               builder: (context) => const SignupStep1(),
+                      //             ));
+                      //       },
+                      //       child: const Text(
+                      //         "S'inscrire",
+                      //         style: TextStyle(color: Colors.lightGreen),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),

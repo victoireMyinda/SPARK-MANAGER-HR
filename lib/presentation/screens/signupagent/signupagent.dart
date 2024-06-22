@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,19 +10,19 @@ import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
 import 'package:location_agent/presentation/widgets/dialog/ValidationDialog.dart';
 import 'package:location_agent/presentation/widgets/dialog/loading.dialog.dart';
+import 'package:location_agent/presentation/widgets/inputs/dropdownRole.dart';
 import 'package:location_agent/presentation/widgets/inputs/nameField.dart';
 import 'package:location_agent/presentation/widgets/inputs/passwordTextField.dart';
 import 'package:location_agent/presentation/widgets/inputs/simplePhoneNumberField.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class SignupStep1 extends StatefulWidget {
-  const SignupStep1({
+class SignupAgent extends StatefulWidget {
+  const SignupAgent({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<SignupStep1> createState() => _SignupStep1State();
+  State<SignupAgent> createState() => _SignupAgentState();
 }
 
 final TextEditingController phoneController = TextEditingController();
@@ -36,7 +35,7 @@ String? submitError;
 String? pays;
 String? codePays = "+243";
 
-class _SignupStep1State extends State<SignupStep1> {
+class _SignupAgentState extends State<SignupAgent> {
   void shareContent(String content) {
     Share.share(content);
   }
@@ -49,7 +48,7 @@ class _SignupStep1State extends State<SignupStep1> {
           physics: const NeverScrollableScrollPhysics(),
           slivers: <Widget>[
             const RecipeDetailAppBarLogin(
-              height: 100,
+              height: 100.0,
               image: "image: widget.image, date: widget.date",
             ),
             SliverToBoxAdapter(
@@ -74,21 +73,13 @@ class _SignupStep1State extends State<SignupStep1> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 10,
+                      const SizedBox(height: 10),
+                      const TransAcademiaDropDownRole(
+                        value: "role",
+                        label: "Role",
+                        hintText: "Role",
                       ),
-                      // Container(
-                      //   height: 60,
-                      //   // width: 300,
-                      //   decoration: BoxDecoration(
-                      //     image: DecorationImage(
-                      //       image: AssetImage(
-                      //           AdaptiveTheme.of(context).mode.name != "dark"
-                      //               ? "assets/images/locate.png"
-                      //               : "assets/images/locate.png"),
-                      //     ),
-                      //   ),
-                      // ),
+                      const SizedBox(height: 10),
 
                       BlocBuilder<SignupCubit, SignupState>(
                         builder: (context, state) {
@@ -187,30 +178,30 @@ class _SignupStep1State extends State<SignupStep1> {
                         },
                       ),
 
-                      BlocBuilder<SignupCubit, SignupState>(
-                        builder: (context, state) {
-                          return Container(
-                              margin: const EdgeInsets.only(bottom: 15),
-                              // color: Colors.white,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0),
-                                height: 50.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                ),
-                                child: TransAcademiaNameInput(
-                                  controller: nameController,
-                                  hintText: "Poste",
-                                  color: Colors.white,
-                                  label: "Poste",
-                                  field: "poste",
-                                  fieldValue: state.field!["poste"],
-                                ),
-                              ));
-                        },
-                      ),
+                      // BlocBuilder<SignupCubit, SignupState>(
+                      //   builder: (context, state) {
+                      //     return Container(
+                      //         margin: const EdgeInsets.only(bottom: 15),
+                      //         // color: Colors.white,
+                      //         child: Container(
+                      //           padding: const EdgeInsets.symmetric(
+                      //               horizontal: 20.0),
+                      //           height: 50.0,
+                      //           decoration: BoxDecoration(
+                      //             borderRadius: BorderRadius.circular(10),
+                      //             color: Colors.white,
+                      //           ),
+                      //           child: TransAcademiaNameInput(
+                      //             controller: nameController,
+                      //             hintText: "Poste",
+                      //             color: Colors.white,
+                      //             label: "Poste",
+                      //             field: "poste",
+                      //             fieldValue: state.field!["poste"],
+                      //           ),
+                      //         ));
+                      //   },
+                      // ),
 
                       BlocBuilder<SignupCubit, SignupState>(
                           builder: (context, state) {
@@ -268,9 +259,9 @@ class _SignupStep1State extends State<SignupStep1> {
                               ));
                         },
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
                       BlocBuilder<SignupCubit, SignupState>(
                         builder: (context, state) {
                           return Container(
@@ -359,10 +350,11 @@ class _SignupStep1State extends State<SignupStep1> {
                                   "mobile_no": state.field!["phone"],
                                   "grade": state.field!["grade"],
                                   "poste": state.field!["poste"],
-                                  "is_root": true
+                                  "is_root":
+                                      state.field!['role'] == "1" ? true : false
                                 };
 
-                                // print(data);
+                                print(data);
 
                                 TransAcademiaLoadingDialog.show(context);
 
@@ -388,9 +380,7 @@ class _SignupStep1State extends State<SignupStep1> {
                           );
                         },
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      
                       // Padding(
                       //   padding: const EdgeInsets.all(20.0),
                       //   child: Container(
@@ -413,33 +403,33 @@ class _SignupStep1State extends State<SignupStep1> {
                       //         ],
                       //       )),
                       // ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("Vous avez déjà un compte ?"),
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const LoginScreen(),
-                                  ));
-                            },
-                            child: Text(
-                              "Connexion",
-                              style: TextStyle(
-                                color: Colors.lightGreen.withOpacity(0.5),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     const Text("Vous avez déjà un compte ?"),
+                      //     const SizedBox(
+                      //       width: 4,
+                      //     ),
+                      //     InkWell(
+                      //       onTap: () {
+                      //         Navigator.push(
+                      //             context,
+                      //             MaterialPageRoute(
+                      //               builder: (context) => const LoginScreen(),
+                      //             ));
+                      //       },
+                      //       child: Text(
+                      //         "Connexion",
+                      //         style: TextStyle(
+                      //           color: Colors.lightGreen.withOpacity(0.5),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),

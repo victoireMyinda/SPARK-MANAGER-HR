@@ -9,6 +9,7 @@ Map? initialState() {
   return {
     'idAgent': "",
     'idUser': "",
+    'role' : "",
     'nom': "",
     'postnom': "",
     'prenom': "",

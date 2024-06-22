@@ -4,6 +4,8 @@ import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardagent.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/signupagent/signupvendeurstep1.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
+import 'package:location_agent/presentation/screens/signup/signup-step1.dart';
+import 'package:location_agent/presentation/screens/signupagent/signupagent.dart';
 import 'package:location_agent/presentation/widgets/appbarkelasi.dart';
 import 'package:lottie/lottie.dart';
 
@@ -63,7 +65,7 @@ class _ListeAgentsScreenState extends State<ListeAgentsScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const SingupVendeurStep1()),
+                  builder: (context) => const SignupAgent()),
             );
           },
           child: Container(

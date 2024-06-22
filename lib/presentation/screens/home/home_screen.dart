@@ -620,12 +620,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
+                              children: const [
                                 Icon(
                                   Icons.logout,
                                   color: Color(0XFF055905),
                                 ),
-                                const SizedBox(
+                                 SizedBox(
                                   width: 100.0,
                                   child: Text(
                                     "Déconnexion",
