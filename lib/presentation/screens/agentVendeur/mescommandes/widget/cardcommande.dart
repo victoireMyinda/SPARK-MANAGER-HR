@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:location_agent/constants/my_colors.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/sites/widgets/detailsite.dart';
 
 class CardCommandes extends StatefulWidget {
   final Map? data;

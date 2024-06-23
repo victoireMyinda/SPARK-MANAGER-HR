@@ -10,6 +10,8 @@ Map? initialState() {
     'idAgent': "",
     'idUser': "",
     'role' : "",
+    'heureArrivee' : "",
+    'heureCloture' : "",
     'nom': "",
     'postnom': "",
     'prenom': "",

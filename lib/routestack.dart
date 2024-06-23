@@ -1,18 +1,11 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:location_agent/presentation/screens/abonnement/abonnement.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/listeagent.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/sites/sites.dart';
-// import 'package:location_agent/responsive.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/horaire/horaire.dart';
 import 'package:location_agent/presentation/screens/home/home_screen.dart';
-import 'package:location_agent/presentation/screens/horaire/horaire.dart';
-import 'package:location_agent/presentation/screens/qrcode/qrcode.dart';
 import 'package:location_agent/presentation/screens/setting/setting.dart';
 import 'package:location_agent/sizeconfig.dart';
-import 'package:location_agent/theme.dart';
 
 class RouteStack extends StatefulWidget {
   const RouteStack({Key? key}) : super(key: key);
@@ -43,8 +36,8 @@ class _RouteStackState extends State<RouteStack>
   List<Widget> _screens = [
     HomeScreen(),
     ListeAgentsScreen(backNavigation: false),
-    HoraireAgentScreen(backNavigation: false),
-    ListSitesScreen(backNavigation: false),
+    HoraireScreen(backNavigation: false),
+    HoraireScreen(backNavigation: false),
     SettingScreen(backNavigation: false),
   ];
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/ventejournaliere/ventejournaliere.dart';
 
 class AppBarKelasi extends StatefulWidget implements PreferredSizeWidget {
   final Color? color, backgroundColor;

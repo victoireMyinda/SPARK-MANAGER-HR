@@ -91,13 +91,85 @@ class SignUpRepository {
     }
   }
 
+  static Future<Map<String, dynamic>> createHoraire(Map data) async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request(
+        'POST',
+        Uri.parse(
+            "https://spark-manager-rh-764791cdc043.herokuapp.com/api/v1/dashboard/schedule"));
+
+    request.body = json.encode(data);
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    String responseBody = await response.stream.bytesToString();
+
+    Map<String, dynamic> responseJson = json.decode(responseBody);
+
+    int statusCode = responseJson['code'];
+
+    if (statusCode == 201) {
+      // String? token = responseJson['token'];
+      String? message = responseJson['message'];
+      Map? data = responseJson['data'];
+
+      // prefs.setString("token", token.toString());
+      return {
+        // "token": token,
+        "status": statusCode,
+        "message": message,
+        "data": data
+      };
+    } else {
+      String message = responseJson['message'];
+      return {"status": statusCode, "message": message};
+    }
+  }
+
+  static Future<Map<String, dynamic>> getHoraire() async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String? token = prefs.getString("token");
+
+    // var headers = {'Authorization': 'Bearer $token'};
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://spark-manager-rh-764791cdc043.herokuapp.com/api/v1/dashboard/schedule'));
+
+    // request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    String responseBody = await response.stream.bytesToString();
+
+    Map<String, dynamic> responseJson = json.decode(responseBody);
+
+    int statusCode = responseJson['code'];
+
+    if (statusCode == 200) {
+      // String? message = responseJson['message'];
+      List? data = responseJson['data'];
+      return {"status": statusCode, "data": data};
+    } else {
+      // String message = responseJson['message'];
+      return {
+        "status": statusCode,
+      };
+    }
+  }
+
   static Future<Map<String, dynamic>> gettAllAgent() async {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     // String? token = prefs.getString("token");
 
     // var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET', Uri.parse('https://spark-manager-rh-764791cdc043.herokuapp.com/api/v1/agent'));
+        'GET',
+        Uri.parse(
+            'https://spark-manager-rh-764791cdc043.herokuapp.com/api/v1/agent'));
 
     // request.headers.addAll(headers);
 
