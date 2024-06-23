@@ -4,7 +4,6 @@ import 'package:location_agent/presentation/screens/agentAdmin/agents/localisati
 import 'package:toast/toast.dart';
 import 'package:flutter/material.dart';
 
-
 class DetailHistoriqueAgent extends StatefulWidget {
   DetailHistoriqueAgent({super.key, this.data});
   final Map? data;
@@ -82,9 +81,12 @@ class _DetailHistoriqueAgentState extends State<DetailHistoriqueAgent> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => LocationScreen(
-                                        agentName: '${widget.data!["firstname"]} ${widget.data!["lastname"]}',
+                                        agentName:
+                                            '${widget.data!["firstname"]} ${widget.data!["lastname"]}',
                                         latitude: pointing["location"]["lat"],
                                         longitude: pointing["location"]["lng"],
+                                        action: pointing["action"],
+                                        date: pointing["created_at"],
                                       ),
                                     ),
                                   );
@@ -98,7 +100,6 @@ class _DetailHistoriqueAgentState extends State<DetailHistoriqueAgent> {
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  
                                   Text(
                                       'Location: Lat ${pointing["location"]["lat"]}, Lng ${pointing["location"]["lng"]}'),
                                 ],
