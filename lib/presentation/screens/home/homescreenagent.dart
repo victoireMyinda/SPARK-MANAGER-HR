@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
 import 'package:location_agent/presentation/screens/home/widgets/cardagentpresence.dart';
+import 'package:location_agent/presentation/screens/setting/setting.dart';
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
 import 'package:location_agent/presentation/widgets/dialog/ValidationDialog.dart';
@@ -18,8 +19,6 @@ import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.da
 import 'package:lottie/lottie.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-
 
 class HomeScreenAgent extends StatefulWidget {
   const HomeScreenAgent({Key? key}) : super(key: key);
@@ -167,8 +166,13 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/login', (Route<dynamic> route) => false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingScreen(
+                                    backNavigation: false,
+                                  )),
+                        );
                       },
                       child: Ink(
                         child: BlocBuilder<SignupCubit, SignupState>(
@@ -197,8 +201,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                   height: 220,
                   decoration: BoxDecoration(
                     color: Colors.blue[900],
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -245,8 +248,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                                       }
                                     } on SocketException {
                                       ValidationDialog.show(context,
-                                          "Pas de connexion internet !",
-                                          () {
+                                          "Pas de connexion internet !", () {
                                         if (kDebugMode) {
                                           print("modal");
                                         }
@@ -262,8 +264,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                                     double latitude = position.latitude;
                                     double longitude = position.longitude;
 
-                                    TransAcademiaLoadingDialog.show(
-                                        context);
+                                    TransAcademiaLoadingDialog.show(context);
                                     Map? data = {
                                       "location": {
                                         "lat": latitude,
@@ -275,29 +276,25 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                                     // print(data);
 
                                     Map<String, dynamic> result =
-                                        await SignUpRepository
-                                            .presenceAgent(data);
+                                        await SignUpRepository.presenceAgent(
+                                            data);
 
                                     Map? response = result['data'];
 
                                     if (response!["status"] == 201) {
                                       TransAcademiaDialogSuccess.show(
-                                          context,
-                                          result['message'],
-                                          "Auth");
+                                          context, result['message'], "Auth");
 
                                       Future.delayed(
-                                          const Duration(
-                                              milliseconds: 4000),
+                                          const Duration(milliseconds: 4000),
                                           () async {
                                         TransAcademiaDialogSuccess.stop(
                                             context);
                                       });
                                     } else {
-                                      TransAcademiaLoadingDialog.stop(
-                                          context);
-                                      TransAcademiaDialogError.show(context,
-                                          result['message'], "login");
+                                      TransAcademiaLoadingDialog.stop(context);
+                                      TransAcademiaDialogError.show(
+                                          context, result['message'], "login");
                                     }
                                   },
                                   icon: const Icon(Icons.check_circle,
@@ -326,8 +323,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                                       }
                                     } on SocketException {
                                       ValidationDialog.show(context,
-                                          "Pas de connexion internet !",
-                                          () {
+                                          "Pas de connexion internet !", () {
                                         if (kDebugMode) {
                                           print("modal");
                                         }
@@ -343,8 +339,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                                     double latitude = position.latitude;
                                     double longitude = position.longitude;
 
-                                    TransAcademiaLoadingDialog.show(
-                                        context);
+                                    TransAcademiaLoadingDialog.show(context);
                                     Map? data = {
                                       "location": {
                                         "lat": latitude,
@@ -356,29 +351,25 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                                     print(data);
 
                                     Map<String, dynamic> result =
-                                        await SignUpRepository
-                                            .presenceAgent(data);
+                                        await SignUpRepository.presenceAgent(
+                                            data);
 
                                     Map? response = result['data'];
 
                                     if (response!["status"] == 201) {
                                       TransAcademiaDialogSuccess.show(
-                                          context,
-                                          result['message'],
-                                          "Auth");
+                                          context, result['message'], "Auth");
 
                                       Future.delayed(
-                                          const Duration(
-                                              milliseconds: 4000),
+                                          const Duration(milliseconds: 4000),
                                           () async {
                                         TransAcademiaDialogSuccess.stop(
                                             context);
                                       });
                                     } else {
-                                      TransAcademiaLoadingDialog.stop(
-                                          context);
-                                      TransAcademiaDialogError.show(context,
-                                          result['message'], "login");
+                                      TransAcademiaLoadingDialog.stop(context);
+                                      TransAcademiaDialogError.show(
+                                          context, result['message'], "login");
                                     }
                                   },
                                   icon: const Icon(Icons.check_circle,
@@ -408,8 +399,8 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                   children: const [
                     Text(
                       "Mes presences",
-                      style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -428,18 +419,18 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                   : dataAgentLength == 0
                       ? Column(
                           children: [
-                            Lottie.asset(
-                                "assets/images/last-transaction.json",
+                            Lottie.asset("assets/images/last-transaction.json",
                                 height: 200),
-                            const Text("Aucun agent n'a été enregistré.")
+                            const Text(
+                              "Aucun agent n'a été enregistré.",
+                            )
                           ],
                         )
                       : Flexible(
                           child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               itemCount: dataAgent!.length,
-                              itemBuilder:
-                                  (BuildContext context, int index) {
+                              itemBuilder: (BuildContext context, int index) {
                                 return CardAgentPresence(
                                     data: dataAgent![index]);
                               }),

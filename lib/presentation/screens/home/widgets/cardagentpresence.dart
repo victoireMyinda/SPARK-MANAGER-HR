@@ -58,7 +58,7 @@ class _CardAgentPresenceState extends State<CardAgentPresence> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                          Text("Nom"),
+                          Text("Nom",style: TextStyle(fontSize: 12),),
                         BlocBuilder<SignupCubit, SignupState>(
                           builder: (context, state) {
                             return Row(
@@ -84,7 +84,7 @@ class _CardAgentPresenceState extends State<CardAgentPresence> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Action pointage"),
+                        Text("Action pointage",style: TextStyle(fontSize: 12),),
                         BlocBuilder<SignupCubit, SignupState>(
                           builder: (context, state) {
                             return Text(
@@ -103,7 +103,7 @@ class _CardAgentPresenceState extends State<CardAgentPresence> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Date"),
+                        Text("Date",style: TextStyle(fontSize: 12),),
                         Text(widget.data!["created_at"],
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 11)),
