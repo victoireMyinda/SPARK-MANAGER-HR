@@ -22,6 +22,7 @@ class _SettingScreenState extends State<SettingScreen> {
             colors: [
               Colors.white,
               Colors.lightGreen.withOpacity(0.5),
+              Colors.white70,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

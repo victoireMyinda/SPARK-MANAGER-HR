@@ -9,6 +9,7 @@ import 'package:location_agent/constants/my_colors.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/horaire/listhoraire.dart';
 import 'package:location_agent/presentation/screens/home/widgets/cardHomeAgent.dart';
+import 'package:location_agent/presentation/screens/setting/setting.dart';
 import 'package:location_agent/presentation/widgets/imageview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
@@ -52,7 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     getRole();
   }
-
 
   getRole() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -144,8 +144,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              '/login', (Route<dynamic> route) => false);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SettingScreen(
+                                      backNavigation: false,
+                                    )),
+                          );
                         },
                         child: Ink(
                           child: BlocBuilder<SignupCubit, SignupState>(
@@ -203,7 +208,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             active: true,
                           ),
                         ),
-                     
                       if (getHoraire == true)
                         InkWell(
                           onTap: () {

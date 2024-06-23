@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/listeagent.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/horaire/listhoraire.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/horaire/signuphoraire.dart';
 import 'package:location_agent/presentation/screens/home/home_screen.dart';
@@ -36,9 +37,8 @@ class _RouteStackState extends State<RouteStack>
   // ignore: prefer_final_fields
   List<Widget> _screens = [
     HomeScreen(),
-    ListeAgentsScreen(backNavigation: false),
     HorairesScreen(backNavigation: false),
-    HorairesScreen(backNavigation: false),
+    HistoriquePresence(backNavigation: false),
     SettingScreen(backNavigation: false),
   ];
 
@@ -96,44 +96,20 @@ Widget bottomNavigationBar(_selectedIndex, _onItemTapped, context) {
                     color: _selectedIndex == 0
                         ? Colors.lightGreen.withOpacity(0.5)
                         : null)),
-            BottomNavigationBarItem(
-                label: "Agents",
-                icon: SvgPicture.asset("assets/icons/user-adds.svg",
-                    width: 20,
-                    color: _selectedIndex == 1
-                        ? Colors.lightGreen.withOpacity(0.5)
-                        : null)),
-            // BottomNavigationBarItem(
-            //     label: "",
-            //     // icon: Icon(Icons.add_circle_outline, size: 40,color: Colors.grey.withOpacity(0.5),)
-            //     icon: Container(
-            //         padding: const EdgeInsets.all(10.0),
-            //         decoration: BoxDecoration(
-            //             border: Border.all(
-            //                 width: 1,
-            //                 color: _selectedIndex == 2
-            //                     ? Colors.lightGreen.withOpacity(0.5)
-            //                     : Colors.grey),
-            //             borderRadius: BorderRadius.circular(50.0)),
-            //         child: SvgPicture.asset(
-            //           _selectedIndex == 2
-            //               ? "assets/icons/qrcode-trans.svg"
-            //               : "assets/icons/qrcode-trans-grey1.svg",
-            //           width: 20,
-            //         ))),
+          
             BottomNavigationBarItem(
                 label: "Horaire",
                 icon: SvgPicture.asset("assets/icons/notif-trans-grey.svg",
                     width: 20,
-                    color: _selectedIndex == 2
+                    color: _selectedIndex == 1
                         ? Colors.lightGreen.withOpacity(0.5)
                         : null)),
             BottomNavigationBarItem(
-                label: "Site",
+                label: "Historique presence",
                 // icon: Icon(Icons.add_circle_outline, size: 40,color: Colors.grey.withOpacity(0.5),)
                 icon: SvgPicture.asset("assets/icons/site.svg",
                     width: 20,
-                    color: _selectedIndex == 3
+                    color: _selectedIndex == 2
                         ? Colors.lightGreen.withOpacity(0.5)
                         : null)),
             BottomNavigationBarItem(
@@ -141,7 +117,7 @@ Widget bottomNavigationBar(_selectedIndex, _onItemTapped, context) {
                 // icon: Icon(Icons.add_circle_outline, size: 40,color: Colors.grey.withOpacity(0.5),)
                 icon: SvgPicture.asset("assets/icons/setting-trans-grey.svg",
                     width: 20,
-                    color: _selectedIndex == 4
+                    color: _selectedIndex == 3
                         ? Colors.lightGreen.withOpacity(0.5)
                         : null)),
             // const BottomNavigationBarItem(
