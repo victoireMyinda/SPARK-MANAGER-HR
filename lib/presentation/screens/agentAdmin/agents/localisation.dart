@@ -34,7 +34,7 @@ class LocationScreen extends StatelessWidget {
           Marker(
             markerId: MarkerId(agentName),
             position: LatLng(latitude, longitude),
-            infoWindow: InfoWindow(title: "${agentName}/${action}/${date}"),
+            infoWindow: InfoWindow(title: " agent ${agentName} : ${action} (${date})"),
           ),
         },
       ),

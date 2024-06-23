@@ -82,7 +82,7 @@ class _DetailHistoriqueAgentState extends State<DetailHistoriqueAgent> {
                                     MaterialPageRoute(
                                       builder: (context) => LocationScreen(
                                         agentName:
-                                            '${widget.data!["firstname"]} ${widget.data!["lastname"]}',
+                                            '${widget.data!["as_user"]["username"]}',
                                         latitude: pointing["location"]["lat"],
                                         longitude: pointing["location"]["lng"],
                                         action: pointing["action"],
