@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:location_agent/constants/my_colors.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/detailagent.dart';
 
 class CartdAgent extends StatefulWidget {
@@ -60,17 +59,17 @@ class _CartdAgentState extends State<CartdAgent> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Text(
-                        //   "${widget.data!["first_name"]} ${widget.data!["second_name"]} ${widget.data!["third_name"]}  ",
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold, fontSize: 11),
-                        // ),
-
                         Text(
-                          "Teddy Biringingwa jacob  ",
+                          "${widget.data!["firstname"]} ${widget.data!["lastname"]}  ",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 11),
                         ),
+
+                        // Text(
+                        //   "Teddy Biringingwa jacob  ",
+                        //   style: TextStyle(
+                        //       fontWeight: FontWeight.bold, fontSize: 11),
+                        // ),
                      
                         Container(
                           padding: const EdgeInsets.all(5),
@@ -78,7 +77,7 @@ class _CartdAgentState extends State<CartdAgent> {
                             color: Color.fromARGB(255, 237, 236, 236),
                             borderRadius: BorderRadius.all(Radius.circular(25)),
                           ),
-                          child:  Text("Agent",
+                          child:  Text("${widget.data!["grade"]}" ,
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   color: Color(0XFF055905),
@@ -93,13 +92,13 @@ class _CartdAgentState extends State<CartdAgent> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("+2438144420",
+                        Text(widget.data!["as_user"]["mobile_no"].toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 11)),
                         BlocBuilder<SignupCubit, SignupState>(
                           builder: (context, state) {
                             return Text(
-                              "Agent affecté",
+                              widget.data!["poste"],
                               style: TextStyle(
                                   fontWeight: FontWeight.w400, fontSize: 11),
                             );

@@ -91,13 +91,13 @@ class SignUpRepository {
     }
   }
 
-  static Future<Map<String, dynamic>> gettAllAgentCream() async {
+  static Future<Map<String, dynamic>> gettAllAgent() async {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     // String? token = prefs.getString("token");
 
     // var headers = {'Authorization': 'Bearer $token'};
     var request = http.Request(
-        'GET', Uri.parse('https://iglace.eyanofinance.org/api/v1/user'));
+        'GET', Uri.parse('https://spark-manager-rh-764791cdc043.herokuapp.com/api/v1/agent'));
 
     // request.headers.addAll(headers);
 
@@ -111,7 +111,7 @@ class SignUpRepository {
 
     if (statusCode == 200) {
       String? message = responseJson['message'];
-      List? data = responseJson['data'];
+      List? data = responseJson['users'];
       return {"status": statusCode, "message": message, "data": data};
     } else {
       String message = responseJson['message'];

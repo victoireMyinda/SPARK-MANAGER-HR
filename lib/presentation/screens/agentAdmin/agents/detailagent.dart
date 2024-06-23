@@ -77,10 +77,10 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            // "${widget.data!["first_name"]} ${widget.data!["second_name"]} ${widget.data!["third_name"]}",
-                            "Teddy Biringingwa cubatte",
-                            style: TextStyle(
+                           Text(
+                           "${widget.data!["firstname"]} ${widget.data!["lastname"]} ${widget.data!["as_user"]["username"]}",
+                          
+                            style: const TextStyle(
                               fontSize: 20,
                               color: Color(0XFF055905),
                             ),
@@ -121,11 +121,11 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text("Téléphone",
+                        children: [
+                          const Text("Téléphone",
                               style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text("+243816644420",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
+                          Text(widget.data!["as_user"]["mobile_no"].toString(),
+                              style: const TextStyle(fontWeight: FontWeight.w300)),
                         ],
                       ),
                       const Divider(
@@ -136,11 +136,11 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text("site affecté",
+                        children:  [
+                          const Text("Grade",
                               style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text("Gombe",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
+                          Text(widget.data!["grade"],
+                              style: const TextStyle(fontWeight: FontWeight.w300)),
                         ],
                       ),
                       const Divider(
@@ -151,13 +151,13 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            "Province",
+                        children:[
+                          const Text(
+                            "Poste",
                             style: TextStyle(fontWeight: FontWeight.w300),
                           ),
-                          Text("Kinshasa",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
+                          Text(widget.data!["poste"],
+                              style: const TextStyle(fontWeight: FontWeight.w300)),
                         ],
                       ),
                       const Divider(
@@ -166,81 +166,7 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text("Ville",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text("Kinshasa",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text("Commune",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text("Ngaliema",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text("Grade",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text("Agent",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text("Fonction",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text("Agent terrain",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text("Mail",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text("myindavictoire@gmai.com",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                     
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
