@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:location_agent/constants/my_colors.dart';
 import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardagent.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/agents/signupagent/signupvendeurstep1.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
-import 'package:location_agent/presentation/screens/signup/signup-step1.dart';
 import 'package:location_agent/presentation/screens/signupagent/signupagent.dart';
 import 'package:location_agent/presentation/widgets/appbarkelasi.dart';
 import 'package:lottie/lottie.dart';
@@ -51,14 +48,10 @@ class _ListeAgentsScreenState extends State<ListeAgentsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarKelasi(
-          backgroundColor: Colors.white,
-          title: "Tous mes agents",
-          leftIcon: "assets/icons/rowback-icon.svg",
-          sizeleftIcon: 11,
-          onTapFunction: () {
-            Navigator.of(context).pop();
-          },
+        appBar: AppBar(
+          backgroundColor: Colors.lightGreen.withOpacity(0.5),
+          title: const Text("Tous mes agents",)
+         
         ),
         floatingActionButton: InkWell(
           onTap: () {

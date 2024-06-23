@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
     getRole();
-     
   }
 
   // checkVersion() async {
@@ -288,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                   HorairesScreen(backNavigation: false),
+                                    HorairesScreen(backNavigation: false),
                               ),
                             );
                           },
@@ -304,8 +303,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    HistoriquePresenceScreen(),
+                                builder: (context) => HistoriquePresence(
+                                  backNavigation: false,
+                                ),
                               ),
                             );
                           },
@@ -317,18 +317,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       if (getSignalerPresence == true)
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    HistoriquePresenceScreen(),
-                              ),
-                            );
-                          },
+                          // onTap: () {
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) =>
+                          //           HistoriquePresence(backNavigation: false,),
+                          //     ),
+                          //   );
+                          // },
                           child: CardMenu(
                             icon: "assets/icons/site.svg",
-                            title: "Signaler presence",
+                            title: "Pointage de presence",
                             active: true,
                           ),
                         ),
