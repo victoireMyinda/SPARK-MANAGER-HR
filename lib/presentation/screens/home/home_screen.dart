@@ -223,16 +223,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               BlocBuilder<SignupCubit, SignupState>(
                                 builder: (context, state) {
-                                  return Text(state.field!["data"]["grade"]);
+                                  return Text(state.field!["role"] == true
+                                      ? "Admin"
+                                      : "Agent");
                                 },
                               ),
                               const SizedBox(height: 6),
                               BlocBuilder<SignupCubit, SignupState>(
                                 builder: (context, state) {
-                                  return  Text(
-                                    state.field!["data"]["firstname"] + " " + state.field!["data"]["lastname"],
-                                    style:
-                                        const TextStyle(fontWeight: FontWeight.bold),
+                                  return Text(
+                                    state.field!["data"]["firstname"] +
+                                        " " +
+                                        state.field!["data"]["lastname"],
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
                                   );
                                 },
                               )
@@ -625,7 +629,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Icons.logout,
                                   color: Color(0XFF055905),
                                 ),
-                                 SizedBox(
+                                SizedBox(
                                   width: 100.0,
                                   child: Text(
                                     "Déconnexion",

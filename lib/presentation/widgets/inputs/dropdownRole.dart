@@ -109,8 +109,8 @@ class _TransAcademiaDropDownRoleState extends State<TransAcademiaDropDownRole> {
 
 List<DropdownMenuItem<String>> get dropdownItems {
   List<DropdownMenuItem<String>> menuItems = [
-    DropdownMenuItem(child: Text("Administrateur"), value: "1"),
-    DropdownMenuItem(child: Text("Agent"), value: "2"),
+    DropdownMenuItem(child: Text("Administrateur"), value: "true"),
+    DropdownMenuItem(child: Text("Agent"), value: "false"),
   ];
   return menuItems;
 }

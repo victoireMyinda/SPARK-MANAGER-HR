@@ -351,7 +351,7 @@ class _SignupAgentState extends State<SignupAgent> {
                                   "grade": state.field!["grade"],
                                   "poste": state.field!["poste"],
                                   "is_root":
-                                      state.field!['role'] == "1" ? true : false
+                                      state.field!['role'] == "true" ? true : false
                                 };
 
                                 print(data);

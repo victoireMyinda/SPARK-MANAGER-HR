@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus_windows
   flutter_localization
+  geolocator_windows
   network_info_plus_windows
   permission_handler_windows
   share_plus

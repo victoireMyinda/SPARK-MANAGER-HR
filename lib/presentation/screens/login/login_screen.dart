@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
+import 'dart:ffi';
 import 'dart:io';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/login/widgets/appbarlogin.dart';
-import 'package:location_agent/presentation/screens/signupagent/signupagent.dart';
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
 import 'package:location_agent/presentation/widgets/dialog/ValidationDialog.dart';
 import 'package:location_agent/presentation/widgets/dialog/loading.dialog.dart';
@@ -13,10 +13,10 @@ import 'package:location_agent/presentation/widgets/inputs/nameField.dart';
 import 'package:toast/toast.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
 import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
-import 'package:location_agent/sizeconfig.dart';
 import 'package:location_agent/presentation/widgets/inputs/passwordTextField.dart';
 import 'package:flutter/material.dart';
-
+import 'package:permission_handler/permission_handler.dart';
+import 'package:geolocator/geolocator.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -31,82 +31,67 @@ class _LoginScreenState extends State<LoginScreen> {
   String? nameError;
   String? passwordError;
   String? submitError;
-  String stateInfoUrl = 'https://api.trans-academia.cd/';
-  var androidState;
-  var iosState;
-  var dataAbonnement = [], prixCDF, prixUSD;
-  String? pays;
-  String? codePays = "+243";
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-   
   }
 
+  Future<Position> _getCurrentLocation() async {
+    LocationPermission permission;
 
+    permission = await Geolocator.checkPermission();
 
-  // checkVersion() async {
-  //   WidgetsFlutterBinding.ensureInitialized();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        // Gérer la permission refusée de manière permanente en dirigeant l'utilisateur vers les paramètres
+        bool openSettings = await _showPermissionDialog();
+        if (openSettings) {
+          openAppSettings();
+        }
+        // Si la permission est refusée, nous continuons à demander la permission
+        return _getCurrentLocation();
+      }
+    }
 
-  //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    if (permission == LocationPermission.whileInUse ||
+        permission == LocationPermission.always) {
+      return await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+    }
 
-  //   String appName = packageInfo.appName;
-  //   String packageName = packageInfo.packageName;
-  //   String buildNumber = packageInfo.buildNumber;
+    // Si la permission est refusée de manière permanente, demander encore
+    return _getCurrentLocation();
+  }
 
-  //   print('build' + buildNumber);
-
-  //   final response = await http
-  //       .get(Uri.parse('https://api-bantou-store.vercel.app/api/v1/versions'));
-
-  //   if (response.statusCode == 200) {
-  //     var data = json.decode(response.body);
-
-  //     print(data["android"]);
-  //     androidState = data["android"];
-  //     iosState = data["ios"];
-  //     List<String> descriptionList = data["description"].split(",");
-
-  //     if (Platform.isIOS == true) {
-  //       if (int.parse(buildNumber) < int.parse(iosState)) {
-  //         BlocProvider.of<SignupCubit>(context).updateField(context,
-  //             field: "iconVersion", data: "assets/images/appstore.json");
-  //         BlocProvider.of<SignupCubit>(context).updateField(context,
-  //             field: "titreVersion",
-  //             data: "Mettez à jour l'application sur Appstore");
-  //         Navigator.of(context).pushNamedAndRemoveUntil(
-  //             '/version', (Route<dynamic> route) => false, arguments: descriptionList);
-  //       } else {
-  //         return;
-  //       }
-  //     }
-
-  //     if (Platform.isIOS == false) {
-  //       if (int.parse(buildNumber) < int.parse(androidState)) {
-  //         BlocProvider.of<SignupCubit>(context).updateField(context,
-  //             field: "iconVersion", data: "assets/images/playstore.json");
-  //         BlocProvider.of<SignupCubit>(context).updateField(context,
-  //             field: "titreVersion",
-  //             data: "Mettez à jour l'application sur playstore");
-
-  //         Navigator.of(context).pushNamedAndRemoveUntil(
-  //             '/version', (Route<dynamic> route) => false,arguments: descriptionList);
-  //         // return;
-  //       } else {
-  //         print('ok');
-  //       }
-  //     }
-  //   } else {
-  //     print('error');
-  //   }
-  // }
+  Future<bool> _showPermissionDialog() async {
+    return await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Permission de localisation"),
+        content: const Text(
+          "Cette application nécessite l'accès à la localisation. "
+          "Veuillez activer les permissions de localisation dans les paramètres pour continuer.",
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text("Annuler"),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text("Ouvrir les paramètres"),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    ToastContext().init(context);
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
@@ -143,7 +128,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Container(
                         height: 60,
-                        // width: 300,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
@@ -160,7 +144,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         builder: (context, state) {
                           return Container(
                               margin: const EdgeInsets.only(bottom: 15),
-                              // color: Colors.white,
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20.0),
@@ -170,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   color: Colors.white,
                                 ),
                                 child: TransAcademiaNameInput(
-                                  controller: nameController,
+                                  controller: phoneController,
                                   hintText: "Nom  d'utilisateur",
                                   color: Colors.white,
                                   label: "Nom  d'utilisateur",
@@ -232,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   return;
                                 }
 
-                                // check connexion
+                                // Vérifier la connexion Internet
                                 try {
                                   final response = await InternetAddress.lookup(
                                       'www.google.com');
@@ -249,17 +232,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                   });
                                   return;
                                 }
-                                Map datalogin = {
+
+                                // Récupérer la position actuelle
+                                Position position = await _getCurrentLocation();
+
+                                // Vérification et récupération des données de localisation
+                                double latitude = position.latitude;
+                                double longitude = position.longitude;
+
+                                Map<String, dynamic> datalogin = {
                                   "login": state.field!["prenom"],
-                                  "pwd": state.field!["password"]
+                                  "pwd": state.field!["password"],
+                                  "latitude": latitude,
+                                  "longitude": longitude,
                                 };
 
-                                // print(datalogin);
+                                print(datalogin);
 
                                 TransAcademiaLoadingDialog.show(context);
                                 Map<String, dynamic> result =
                                     await SignUpRepository.login(datalogin);
-                                // String? token = result['token'];
                                 int statusCode = result['status'];
                                 Map? data = result['data'];
 
@@ -267,6 +259,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   BlocProvider.of<SignupCubit>(context)
                                       .updateField(context,
                                           field: "data", data: data);
+
+                                  BlocProvider.of<SignupCubit>(context)
+                                      .updateField(context,
+                                          field: "role",
+                                          data: data!['as_user']['is_root']);
 
                                   Navigator.of(context).pushNamedAndRemoveUntil(
                                       '/routestack',
@@ -313,28 +310,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     const Text("Pas de compte ?"),
-                      //     const SizedBox(
-                      //       width: 4,
-                      //     ),
-                      //     InkWell(
-                      //       onTap: () {
-                      //         Navigator.push(
-                      //             context,
-                      //             MaterialPageRoute(
-                      //               builder: (context) => const SignupStep1(),
-                      //             ));
-                      //       },
-                      //       child: const Text(
-                      //         "S'inscrire",
-                      //         style: TextStyle(color: Colors.lightGreen),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // )
                     ],
                   ),
                 ),
