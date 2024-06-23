@@ -64,7 +64,7 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                     ),
                     child: SvgPicture.asset(
                       "assets/icons/avatarkelasi.svg",
-                      color: Color(0XFF055905),
+                      color: const Color(0XFF055905),
                     ),
                   ),
                 ),
@@ -77,34 +77,33 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           Text(
-                           "${widget.data!["firstname"]} ${widget.data!["lastname"]} ${widget.data!["as_user"]["username"]}",
-                          
+                          Text(
+                            "${widget.data!["firstname"]} ${widget.data!["lastname"]} ${widget.data!["as_user"]["username"]}",
                             style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 16,
                               color: Color(0XFF055905),
                             ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Icon(
+                            children: const [
+                              Icon(
                                 Icons.delete_outlined,
                                 color: Color(0XFF055905),
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 width: 10,
                               ),
                               InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SingupVendeurStep1()),
-                                  );
-                                },
-                                child: const Icon(
+                                // onTap: () {
+                                //   Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //              SingupVendeurStep1()),
+                                //   );
+                                // },
+                                child: Icon(
                                   Icons.edit_outlined,
                                   color: Color(0XFF055905),
                                 ),
@@ -125,7 +124,8 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                           const Text("Téléphone",
                               style: TextStyle(fontWeight: FontWeight.w300)),
                           Text(widget.data!["as_user"]["mobile_no"].toString(),
-                              style: const TextStyle(fontWeight: FontWeight.w300)),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w300)),
                         ],
                       ),
                       const Divider(
@@ -136,11 +136,12 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:  [
+                        children: [
                           const Text("Grade",
                               style: TextStyle(fontWeight: FontWeight.w300)),
                           Text(widget.data!["grade"],
-                              style: const TextStyle(fontWeight: FontWeight.w300)),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w300)),
                         ],
                       ),
                       const Divider(
@@ -151,13 +152,14 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:[
+                        children: [
                           const Text(
                             "Poste",
                             style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                           Text(widget.data!["poste"],
-                              style: const TextStyle(fontWeight: FontWeight.w300)),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w300)),
                         ],
                       ),
                       const Divider(
@@ -166,7 +168,6 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                     
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
