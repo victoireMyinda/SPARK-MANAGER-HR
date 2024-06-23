@@ -38,33 +38,30 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<Position> _getCurrentLocation() async {
-    LocationPermission permission;
+    try {
+      LocationPermission permission = await Geolocator.checkPermission();
 
-    permission = await Geolocator.checkPermission();
-
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
-      permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
-        // Gérer la permission refusée de manière permanente en dirigeant l'utilisateur vers les paramètres
-        bool openSettings = await _showPermissionDialog();
-        if (openSettings) {
-          openAppSettings();
+          permission == LocationPermission.deniedForever ||
+          permission == LocationPermission.unableToDetermine) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied ||
+            permission == LocationPermission.deniedForever) {
+          throw Exception("Permission de localisation refusée");
         }
-        // Si la permission est refusée, nous continuons à demander la permission
-        return _getCurrentLocation();
       }
-    }
 
-    if (permission == LocationPermission.whileInUse ||
-        permission == LocationPermission.always) {
-      return await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-    }
+      if (permission == LocationPermission.whileInUse ||
+          permission == LocationPermission.always) {
+        return await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
+      }
 
-    // Si la permission est refusée de manière permanente, demander encore
-    return _getCurrentLocation();
+      throw Exception("Permission de localisation non accordée");
+    } catch (e) {
+      print("Erreur lors de la récupération de la localisation : $e");
+      throw e; // Vous pouvez également afficher un message d'erreur à l'utilisateur ici
+    }
   }
 
   Future<bool> _showPermissionDialog() async {
