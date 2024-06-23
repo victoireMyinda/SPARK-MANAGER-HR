@@ -1,165 +1,131 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:convert';
+import 'dart:io';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/localisation.dart';
-import 'package:location_agent/presentation/widgets/appbarkelasi.dart';
+import 'package:toast/toast.dart';
+import 'package:flutter/material.dart';
+
 
 class DetailHistoriqueAgent extends StatefulWidget {
-  Map? data;
-  DetailHistoriqueAgent({super.key, required this.data});
+  DetailHistoriqueAgent({super.key, this.data});
+  final Map? data;
 
   @override
-  State<DetailHistoriqueAgent> createState() => _DetailHistoriqueAgentState();
+  _DetailHistoriqueAgentState createState() => _DetailHistoriqueAgentState();
 }
 
 class _DetailHistoriqueAgentState extends State<DetailHistoriqueAgent> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    ToastContext().init(context);
+
+    // Récupération des données pointings
+    List<dynamic> pointings = widget.data?['pointings'] ?? [];
+
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarKelasi(
-          backgroundColor: Colors.white,
-          title: "Detail agent",
-          leftIcon: "assets/icons/rowback-icon.svg",
-          sizeleftIcon: 11,
-          onTapFunction: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        backgroundColor: const Color.fromARGB(255, 245, 244, 244),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
+        body: Stack(
+          alignment: Alignment.center,
+          children: [
+            Column(
               children: [
-                const SizedBox(height: 20),
-                Center(
-                  child: Container(
-                    height: 70,
-                    width: 70,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: SvgPicture.asset(
-                      "assets/icons/avatarkelasi.svg",
-                      color: const Color(0XFF055905),
+                Container(
+                  height: 100,
+                  color: Colors.lightGreen.withOpacity(0.5),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Icon(Icons.arrow_back_outlined,
+                              color: Colors.white),
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          "${widget.data!["firstname"]} ${widget.data!["lastname"]} ${widget.data!["as_user"]["username"]}",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  // color: Colors.grey,
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "${widget.data!["firstname"]} ${widget.data!["lastname"]} ${widget.data!["as_user"]["username"]}",
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: Color(0XFF055905),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("Téléphone",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text(widget.data!["as_user"]["mobile_no"].toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("Grade",
-                              style: TextStyle(fontWeight: FontWeight.w300)),
-                          Text(widget.data!["grade"],
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "Poste",
-                            style: TextStyle(fontWeight: FontWeight.w300),
-                          ),
-                          Text(widget.data!["poste"],
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: const BoxDecoration(
-                            color: Color(0XFF055905),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.my_location,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LocalisationScreen(),
-                                  ),
-                                );
-                              },
-                              child: const Text(
-                                "Obtenir sa localisation",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
+                Expanded(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: ListView.builder(
+                        itemCount: pointings.length,
+                        itemBuilder: (context, index) {
+                          final pointing = pointings[index];
+                          return Card(
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            elevation: 2,
+                            child: ListTile(
+                              leading: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LocationScreen(
+                                        agentName: '${widget.data!["firstname"]} ${widget.data!["lastname"]}',
+                                        latitude: pointing["location"]["lat"],
+                                        longitude: pointing["location"]["lng"],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: const Icon(
+                                  Icons.location_on,
+                                  color: Colors.green,
                                 ),
                               ),
+                              title: Text('Action: ${pointing["action"]}'),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  
+                                  Text(
+                                      'Location: Lat ${pointing["location"]["lat"]}, Lng ${pointing["location"]["lng"]}'),
+                                ],
+                              ),
                             ),
-                          ],
-                        ),
+                          );
+                        },
                       ),
-                    ],
+                    ),
                   ),
-                )
+                ),
               ],
             ),
-          ),
+            const Positioned(
+              top: 60,
+              child: CircleAvatar(
+                radius: 40,
+                backgroundImage: AssetImage('assets/images/user.jpg'),
+              ),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  void showToast(String msg, {int? duration, int? gravity}) {
+    Toast.show(msg, duration: duration, gravity: gravity);
   }
 }

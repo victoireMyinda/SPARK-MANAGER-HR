@@ -188,32 +188,32 @@ class _DetailAgentScreenState extends State<DetailAgentScreen> {
                                 BorderRadius.all(Radius.circular(20))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
+                          children: const [
+                             Icon(
                               Icons.my_location,
                               color: Colors.white,
                               size: 20,
                             ),
-                            const SizedBox(
+                             SizedBox(
                               width: 20,
                             ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LocalisationScreen(),
-                                  ),
-                                );
-                              },
-                              child: const Text(
-                                "Obtenir sa localisation",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
+                            // InkWell(
+                            //   onTap: () {
+                            //     Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) => LocalisationScreen(),
+                            //       ),
+                            //     );
+                            //   },
+                            //   child: const Text(
+                            //     "Obtenir sa localisation",
+                            //     style: TextStyle(
+                            //       fontWeight: FontWeight.w400,
+                            //       color: Colors.white,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
