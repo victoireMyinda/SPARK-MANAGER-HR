@@ -27,15 +27,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  String role = "";
-  bool getCarte = false;
-  bool getFlash = false;
-  bool getAcces = false;
-  bool getControl = false;
-  bool getPhoto = false;
-  bool getOffline = false;
-  bool getAccesOffline = false;
-  bool getPaiementOffline = false;
+  bool role = false;
+  bool getAgent = false;
+  bool getMesPresences = false;
+  bool getHistoriquePresence = false;
+  bool getHoraire = false;
+  bool getSignalerPresence = false;
 
   var androidState;
   var iosState;
@@ -118,65 +115,29 @@ class _HomeScreenState extends State<HomeScreen> {
   //   }
   // }
 
-  // getRole() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     role = prefs.getString('role')!;
-  //     if (role == "Point-Focaux") {
-  //       getCarte = true;
-  //       getFlash = true;
-  //       getAcces = false;
-  //       getControl = false;
-  //       getPhoto = true;
-  //       getOffline = true;
-  //       getPaiementOffline = true;
-  //       getAccesOffline = false;
-  //     } else if (role == "Controleur") {
-  //       getCarte = false;
-  //       getFlash = false;
-  //       getAcces = false;
-  //       getControl = true;
-  //       getPhoto = true;
-  //       getOffline = false;
-  //       getPaiementOffline = false;
-  //       getAccesOffline = true;
-  //     } else if (role == "Regulateur") {
-  //       getCarte = true;
-  //       getFlash = true;
-  //       getAcces = false;
-  //       getControl = false;
-  //       getPhoto = true;
-  //       getOffline = true;
-  //       getOffline = true;
-  //       getPaiementOffline = true;
-  //       getAccesOffline = true;
-  //     } else if (role == "Verificateur") {
-  //       getCarte = false;
-  //       getFlash = false;
-  //       getAcces = true;
-  //       getControl = true;
-  //       getPhoto = false;
-  //       getOffline = false;
-  //       getPaiementOffline = false;
-  //       getAccesOffline = true;
-  //     } else {
-  //       getCarte = true;
-  //       getFlash = true;
-  //       getAcces = true;
-  //       getControl = true;
-  //       getPhoto = true;
-  //       getOffline = true;
-  //       getPaiementOffline = true;
-  //       getAccesOffline = true;
-  //     }
-  //   });
-  // }
+  getRole() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      role = prefs.getBool('role')!;
+      if (role == true) {
+        getAgent = true;
+        getHistoriquePresence = true;
+        getHoraire = true;
+        getMesPresences = false;
+        getSignalerPresence = false;
+      } else {
+        getAgent = false;
+        getHistoriquePresence = false;
+        getHoraire = false;
+        getMesPresences = true;
+        getSignalerPresence = true;
+      }
+    });
+  }
 
   // getProfilAgent() async {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  //   BlocProvider.of<SignupCubit>(context)
-  //       .updateField(context, field: "phone", data: prefs.getString('phone'));
   //   BlocProvider.of<SignupCubit>(context)
   //       .updateField(context, field: "idAgent", data: prefs.getString('id'));
   //   BlocProvider.of<SignupCubit>(context)
@@ -204,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(14.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -272,85 +233,107 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: CardLocalisation(),
-              ),
+              // const Padding(
+              //   padding: EdgeInsets.all(20.0),
+              //   child: CardLocalisation(),
+              // ),
               // const SizedBox(
               //   height: 20,
               // ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(30.0),
                   child: GridView.count(
                     crossAxisCount: 2,
                     // childAspectRatio: 1,
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  ListeAgentsScreen(backNavigation: false),
-                            ),
-                          );
-                        },
-                        child: CardMenu(
-                          icon: "assets/icons/user-adds.svg",
-                          title: "Agents",
-                          active: true,
+                      if (getAgent == true)
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ListeAgentsScreen(backNavigation: false),
+                              ),
+                            );
+                          },
+                          child: CardMenu(
+                            icon: "assets/icons/user-adds.svg",
+                            title: "Agents",
+                            active: true,
+                          ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  ListSitesScreen(backNavigation: false),
-                            ),
-                          );
-                        },
-                        child: CardMenu(
-                          icon: "assets/icons/site.svg",
-                          title: "Sites",
-                          active: true,
+                      if (getMesPresences == true)
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ListSitesScreen(backNavigation: false),
+                              ),
+                            );
+                          },
+                          child: CardMenu(
+                            icon: "assets/icons/site.svg",
+                            title: "Mes presences",
+                            active: true,
+                          ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  ListeAgentsScreen(backNavigation: false),
-                            ),
-                          );
-                        },
-                        child: CardMenu(
-                          icon: "assets/icons/user-adds.svg",
-                          title: "Horaire",
-                          active: true,
+                      if (getHoraire == true)
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ListeAgentsScreen(backNavigation: false),
+                              ),
+                            );
+                          },
+                          child: CardMenu(
+                            icon: "assets/icons/user-adds.svg",
+                            title: "Horaire",
+                            active: true,
+                          ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HistoriquePresenceScreen(),
-                            ),
-                          );
-                        },
-                        child: CardMenu(
-                          icon: "assets/icons/site.svg",
-                          title: "Historique presence",
-                          active: true,
+                      if (getHistoriquePresence == true)
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HistoriquePresenceScreen(),
+                              ),
+                            );
+                          },
+                          child: CardMenu(
+                            icon: "assets/icons/site.svg",
+                            title: "Historique presence",
+                            active: true,
+                          ),
                         ),
-                      ),
+                      if (getSignalerPresence == true)
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HistoriquePresenceScreen(),
+                              ),
+                            );
+                          },
+                          child: CardMenu(
+                            icon: "assets/icons/site.svg",
+                            title: "Signaler presence",
+                            active: true,
+                          ),
+                        ),
                     ],
                   ),
                 ),

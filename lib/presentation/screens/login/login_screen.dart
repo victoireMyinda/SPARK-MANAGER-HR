@@ -10,6 +10,7 @@ import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogEr
 import 'package:location_agent/presentation/widgets/dialog/ValidationDialog.dart';
 import 'package:location_agent/presentation/widgets/dialog/loading.dialog.dart';
 import 'package:location_agent/presentation/widgets/inputs/nameField.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
 import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
@@ -191,6 +192,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 const EdgeInsets.symmetric(horizontal: 20.0),
                             child: GestureDetector(
                               onTap: () async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+
                                 if (state.field!["prenom"] == "") {
                                   ValidationDialog.show(context,
                                       "veuillez saisir le nom d'utilisateur",
@@ -261,6 +265,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       .updateField(context,
                                           field: "role",
                                           data: data!['as_user']['is_root']);
+
+                                  prefs.setBool(
+                                      'role', data['as_user']['is_root']);
 
                                   Navigator.of(context).pushNamedAndRemoveUntil(
                                       '/routestack',

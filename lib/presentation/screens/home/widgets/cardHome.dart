@@ -18,7 +18,7 @@ class _CardLocalisationState extends State<CardLocalisation> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 100,
       
       // padding: const EdgeInsets.all(20),
       // decoration: const BoxDecoration(
