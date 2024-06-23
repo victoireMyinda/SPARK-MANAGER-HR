@@ -7,6 +7,7 @@ import 'package:location_agent/presentation/screens/signup/signup-step3.dart';
 import 'package:location_agent/presentation/screens/signup/signup.dart';
 import 'package:location_agent/refreshCheck.dart';
 import 'package:location_agent/routestack.dart';
+import 'package:location_agent/routestackagent.dart';
 import 'package:location_agent/splashscreen.dart';
 import 'package:location_agent/version.dart';
 
@@ -23,6 +24,10 @@ List<GetPage<dynamic>> getPages() {
     GetPage(
         name: '/routestack',
          page: () => const RouteStack(),
+        transition: Transition.cupertino),
+         GetPage(
+        name: '/routestackAgent',
+         page: () => const RouteStackAgent(),
         transition: Transition.cupertino),
     GetPage(
         name: '/login',

@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:location_agent/constants/my_colors.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/horaire/listhoraire.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/horaire/signuphoraire.dart';
+import 'package:location_agent/presentation/screens/home/widgets/cardHomeAgent.dart';
 import 'package:location_agent/presentation/widgets/imageview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
@@ -29,23 +29,22 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var role;
   bool getAgent = false;
-  bool getMesPresences = false;
   bool getHistoriquePresence = false;
   bool getHoraire = false;
   bool getSignalerPresence = false;
 
-  var androidState;
-  var iosState;
+  // var androidState;
+  // var iosState;
 
-  Future _launchURL(url) async {
-    // ignore: deprecated_member_use
-    if (await canLaunch(url)) {
-      // ignore: deprecated_member_use
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // Future _launchURL(url) async {
+  //   // ignore: deprecated_member_use
+  //   if (await canLaunch(url)) {
+  //     // ignore: deprecated_member_use
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   @override
   void initState() {
@@ -54,63 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
     getRole();
   }
 
-  // checkVersion() async {
-  //   WidgetsFlutterBinding.ensureInitialized();
-
-  //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-  //   String buildNumber = packageInfo.buildNumber;
-
-  //   print('build' + buildNumber);
-
-  //   final response = await http.get(
-  //       Uri.parse('https://api-bantou-store.vercel.app/api/v1/versionsagent'));
-
-  //   if (response.statusCode == 200) {
-  //     var data = json.decode(response.body);
-
-  //     print(data["android"]);
-
-  //     androidState = data["android"];
-  //     iosState = data["ios"];
-  //     List<String> descriptionList = data["description"].split(",");
-
-  //     BlocProvider.of<SignupCubit>(context).updateField(context,
-  //         field: "descriptionVersion", data: data["description"]);
-
-  //     if (Platform.isIOS == true) {
-  //       if (int.parse(buildNumber) < int.parse(iosState)) {
-  //         BlocProvider.of<SignupCubit>(context).updateField(context,
-  //             field: "iconVersion", data: "assets/images/update.json");
-  //         BlocProvider.of<SignupCubit>(context).updateField(context,
-  //             field: "titreVersion", data: "Découvrez les nouveautés");
-  //         Navigator.of(context).pushNamedAndRemoveUntil(
-  //             '/version', (Route<dynamic> route) => false,
-  //             arguments: descriptionList);
-  //       } else {
-  //         print('ok');
-  //         return;
-  //       }
-  //     }
-
-  //     if (Platform.isIOS == false) {
-  //       if (int.parse(buildNumber) < int.parse(androidState)) {
-  //         BlocProvider.of<SignupCubit>(context).updateField(context,
-  //             field: "iconVersion", data: "assets/images/update.json");
-  //         BlocProvider.of<SignupCubit>(context).updateField(context,
-  //             field: "titreVersion", data: "Découvrez les nouveautés");
-  //         Navigator.of(context).pushNamedAndRemoveUntil(
-  //             '/version', (Route<dynamic> route) => false,
-  //             arguments: descriptionList);
-  //         // return;
-  //       } else {
-  //         print('ok');
-  //       }
-  //     }
-  //   } else {
-  //     print('error');
-  //   }
-  // }
 
   getRole() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -120,13 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
         getAgent = true;
         getHistoriquePresence = true;
         getHoraire = true;
-        getMesPresences = false;
         getSignalerPresence = false;
       } else {
         getAgent = false;
         getHistoriquePresence = false;
         getHoraire = false;
-        getMesPresences = true;
         getSignalerPresence = true;
       }
     });
@@ -263,23 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             active: true,
                           ),
                         ),
-                      if (getMesPresences == true)
-                        InkWell(
-                          // onTap: () {
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           ListSitesScreen(backNavigation: false),
-                          //     ),
-                          //   );
-                          // },
-                          child: CardMenu(
-                            icon: "assets/icons/site.svg",
-                            title: "Mes presences",
-                            active: true,
-                          ),
-                        ),
+                     
                       if (getHoraire == true)
                         InkWell(
                           onTap: () {
@@ -316,21 +240,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       if (getSignalerPresence == true)
-                        InkWell(
-                          // onTap: () {
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           HistoriquePresence(backNavigation: false,),
-                          //     ),
-                          //   );
-                          // },
-                          child: CardMenu(
-                            icon: "assets/icons/site.svg",
-                            title: "Pointage de presence",
-                            active: true,
-                          ),
+                        CardHomeAgent(
+                          icon: "assets/icons/site.svg",
+                          title: "Pointage de presence",
+                          active: true,
                         ),
                     ],
                   ),

@@ -16,8 +16,6 @@ import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.da
 import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
 import 'package:location_agent/presentation/widgets/inputs/passwordTextField.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:geolocator/geolocator.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -36,56 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-  }
-
-  Future<Position> _getCurrentLocation() async {
-    try {
-      LocationPermission permission = await Geolocator.checkPermission();
-
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever ||
-          permission == LocationPermission.unableToDetermine) {
-        permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied ||
-            permission == LocationPermission.deniedForever) {
-          throw Exception("Permission de localisation refusée");
-        }
-      }
-
-      if (permission == LocationPermission.whileInUse ||
-          permission == LocationPermission.always) {
-        return await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high);
-      }
-
-      throw Exception("Permission de localisation non accordée");
-    } catch (e) {
-      print("Erreur lors de la récupération de la localisation : $e");
-      throw e; // Vous pouvez également afficher un message d'erreur à l'utilisateur ici
-    }
-  }
-
-  Future<bool> _showPermissionDialog() async {
-    return await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Permission de localisation"),
-        content: const Text(
-          "Cette application nécessite l'accès à la localisation. "
-          "Veuillez activer les permissions de localisation dans les paramètres pour continuer.",
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text("Annuler"),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text("Ouvrir les paramètres"),
-          ),
-        ],
-      ),
-    );
   }
 
   @override
@@ -234,21 +182,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   return;
                                 }
 
-                                // Récupérer la position actuelle
-                                Position position = await _getCurrentLocation();
-
-                                // Vérification et récupération des données de localisation
-                                double latitude = position.latitude;
-                                double longitude = position.longitude;
-
                                 Map<String, dynamic> datalogin = {
                                   "login": state.field!["prenom"],
                                   "pwd": state.field!["password"],
-                                  "latitude": latitude,
-                                  "longitude": longitude,
                                 };
-
-                                // print(datalogin);
 
                                 TransAcademiaLoadingDialog.show(context);
                                 Map<String, dynamic> result =
@@ -257,6 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Map? data = result['data'];
 
                                 if (statusCode == 200) {
+                                  bool role = data!['as_user']['is_root'];
                                   BlocProvider.of<SignupCubit>(context)
                                       .updateField(context,
                                           field: "data", data: data);
@@ -264,15 +202,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                   BlocProvider.of<SignupCubit>(context)
                                       .updateField(context,
                                           field: "role",
-                                          data: data!['as_user']['is_root']);
+                                          data: data['as_user']['is_root']);
 
                                   prefs.setBool(
                                       'role', data['as_user']['is_root']);
-                                     
 
-                                  Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/routestack',
-                                      (Route<dynamic> route) => false);
+                                  prefs.setString('idAgent', data['_id']);
+
+                                  role == true
+                                      ? Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                              '/routestack',
+                                              (Route<dynamic> route) => false)
+                                      : Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                              '/routestackAgent',
+                                              (Route<dynamic> route) => false);
                                 } else {
                                   TransAcademiaLoadingDialog.stop(context);
                                   TransAcademiaDialogError.show(

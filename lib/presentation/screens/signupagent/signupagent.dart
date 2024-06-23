@@ -349,12 +349,13 @@ class _SignupAgentState extends State<SignupAgent> {
                                   "pwd_repeat": state.field!["confirmPassword"],
                                   "mobile_no": state.field!["phone"],
                                   "grade": state.field!["grade"],
-                                  "poste": state.field!["poste"],
-                                  "is_root":
-                                      state.field!['role'] == "true" ? true : false
+                                  "poste": "Agent",
+                                  "is_root": state.field!['role'] == "true"
+                                      ? true
+                                      : false
                                 };
 
-                                print(data);
+                                // print(data);
 
                                 TransAcademiaLoadingDialog.show(context);
 
@@ -380,7 +381,7 @@ class _SignupAgentState extends State<SignupAgent> {
                           );
                         },
                       ),
-                      
+
                       // Padding(
                       //   padding: const EdgeInsets.all(20.0),
                       //   child: Container(
