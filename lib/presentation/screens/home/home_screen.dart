@@ -27,7 +27,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool role = false;
+  var role;
   bool getAgent = false;
   bool getMesPresences = false;
   bool getHistoriquePresence = false;
@@ -47,15 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   checkVersion();
-  //   getProfilAgent();
-  //   BlocProvider.of<SignupCubit>(context)
-  //       .updateField(context, field: "phone", data: "");
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getRole();
+     
+  }
 
   // checkVersion() async {
   //   WidgetsFlutterBinding.ensureInitialized();

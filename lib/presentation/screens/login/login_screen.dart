@@ -248,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   "longitude": longitude,
                                 };
 
-                                print(datalogin);
+                                // print(datalogin);
 
                                 TransAcademiaLoadingDialog.show(context);
                                 Map<String, dynamic> result =
@@ -268,6 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   prefs.setBool(
                                       'role', data['as_user']['is_root']);
+                                     
 
                                   Navigator.of(context).pushNamedAndRemoveUntil(
                                       '/routestack',
