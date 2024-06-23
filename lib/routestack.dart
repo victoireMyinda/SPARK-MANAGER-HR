@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/listeagent.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/horaire/horaire.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/horaire/listhoraire.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/horaire/signuphoraire.dart';
 import 'package:location_agent/presentation/screens/home/home_screen.dart';
 import 'package:location_agent/presentation/screens/setting/setting.dart';
 import 'package:location_agent/sizeconfig.dart';
@@ -36,8 +37,8 @@ class _RouteStackState extends State<RouteStack>
   List<Widget> _screens = [
     HomeScreen(),
     ListeAgentsScreen(backNavigation: false),
-    HoraireScreen(backNavigation: false),
-    HoraireScreen(backNavigation: false),
+    HorairesScreen(backNavigation: false),
+    HorairesScreen(backNavigation: false),
     SettingScreen(backNavigation: false),
   ];
 

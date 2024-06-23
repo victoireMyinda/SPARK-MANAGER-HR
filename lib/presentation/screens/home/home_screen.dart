@@ -7,7 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:location_agent/constants/my_colors.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/horaire/horaire.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/horaire/listhoraire.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/horaire/signuphoraire.dart';
 import 'package:location_agent/presentation/widgets/imageview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
@@ -287,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                   HoraireScreen(backNavigation: false),
+                                   HorairesScreen(backNavigation: false),
                               ),
                             );
                           },
