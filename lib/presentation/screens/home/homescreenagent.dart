@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
+import 'package:location_agent/presentation/screens/home/widgets/cardPresencebyagent.dart';
 import 'package:location_agent/presentation/screens/home/widgets/cardagentpresence.dart';
 import 'package:location_agent/presentation/screens/setting/setting.dart';
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
@@ -273,17 +274,20 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                                       "action": "ARRIVE",
                                       "agent": state.field!["data"]["_id"]
                                     };
-                                    // print(data);
+                                    //  print(data);
 
                                     Map<String, dynamic> result =
                                         await SignUpRepository.presenceAgent(
                                             data);
 
-                                    Map? response = result['data'];
+                                    // Map? response = result['data'];
 
-                                    if (response!["status"] == 201) {
+                                    if (result["status"] == 201) {
+                                      TransAcademiaLoadingDialog.stop(context);
                                       TransAcademiaDialogSuccess.show(
-                                          context, result['message'], "Auth");
+                                          context,
+                                          "Merci d'avoir signalé votre ARRIVEE",
+                                          "Auth");
 
                                       Future.delayed(
                                           const Duration(milliseconds: 4000),
@@ -294,7 +298,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                                     } else {
                                       TransAcademiaLoadingDialog.stop(context);
                                       TransAcademiaDialogError.show(
-                                          context, result['message'], "login");
+                                          context, result["message"], "login");
                                     }
                                   },
                                   icon: const Icon(Icons.check_circle,
@@ -356,9 +360,12 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
 
                                     Map? response = result['data'];
 
-                                    if (response!["status"] == 201) {
+                                    if (result["status"] == 201) {
+                                      TransAcademiaLoadingDialog.stop(context);
                                       TransAcademiaDialogSuccess.show(
-                                          context, result['message'], "Auth");
+                                          context,
+                                          "Merci d'avoir signalé votre DEPART",
+                                          "Auth");
 
                                       Future.delayed(
                                           const Duration(milliseconds: 4000),
@@ -422,7 +429,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                             Lottie.asset("assets/images/last-transaction.json",
                                 height: 200),
                             const Text(
-                              "Aucun agent n'a été enregistré.",
+                              "Aucune donnée trouvée.",
                             )
                           ],
                         )
@@ -431,7 +438,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                               scrollDirection: Axis.vertical,
                               itemCount: dataAgent!.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return CardAgentPresence(
+                                return CardPresenceByAgent(
                                     data: dataAgent![index]);
                               }),
                         ),

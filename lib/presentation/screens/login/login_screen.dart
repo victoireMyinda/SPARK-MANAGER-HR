@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Container(
                         height: 60,
-                        decoration:const  BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage("assets/images/locate.png"),
                           ),
@@ -208,17 +208,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                   prefs.setBool(
                                       'role', data['as_user']['is_root']);
 
-                                  prefs.setString('idAgent', data['_id']);
-
                                   role == true
                                       ? Navigator.of(context)
                                           .pushNamedAndRemoveUntil(
                                               '/routestack',
                                               (Route<dynamic> route) => false)
-                                      : Navigator.of(context)
-                                          .pushNamedAndRemoveUntil(
-                                              '/routestackAgent',
-                                              (Route<dynamic> route) => false);
+                                      : prefs.setString('idAgent', data['_id']);
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      '/routestackAgent',
+                                      (Route<dynamic> route) => false);
                                 } else {
                                   TransAcademiaLoadingDialog.stop(context);
                                   TransAcademiaDialogError.show(
