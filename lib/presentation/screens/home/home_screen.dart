@@ -2,10 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:location_agent/data/repository/signUp_repository.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
 import 'package:location_agent/presentation/screens/home/widgets/CardPresence.dart';
+import 'package:location_agent/presentation/screens/home/widgets/cardPresenceToday.dart';
 import 'package:location_agent/presentation/screens/setting/setting.dart';
 import 'package:location_agent/presentation/widgets/imageview.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:lottie/lottie.dart';
 import 'widgets/cardMenu.dart';
 import 'package:toast/toast.dart';
 
@@ -19,9 +23,52 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  List? dataAgent = [];
+  bool isLoading = true;
+  int dataAgentLength = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() async {
+    Map<String, dynamic>? response = await SignUpRepository.getAllPresence();
+    List<dynamic>? allAgent = response["data"];
+
+    setState(() {
+      dataAgent = allAgent;
+      isLoading = false;
+      dataAgentLength = allAgent?.length ?? 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CardPresence()),
+          );
+        },
+        child: Container(
+            width: 70,
+            height: 70,
+            decoration: const BoxDecoration(
+              color: Color(0XFF055905),
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+            ),
+            child: const Center(
+              child: Text(
+                "Voir la carte",
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+            )),
+      ),
       body: SafeArea(
         child: Container(
           color: const Color.fromARGB(179, 246, 244, 244),
@@ -100,15 +147,52 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-
+              const SizedBox(height: 20),
               CardMenu(),
-              const SizedBox(
-                height: 10,
+                const SizedBox(height: 20),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Prensences du jour",
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
-              Expanded(child: CardPresence())
+              const SizedBox(height: 10),
+              isLoading == true
+                  ? Flexible(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int index) {
+                          return const CardAgentPlaceholder();
+                        },
+                      ),
+                    )
+                  : dataAgentLength == 0
+                      ? Column(
+                          children: [
+                            Lottie.asset("assets/images/last-transaction.json",
+                                height: 200),
+                            const Text(
+                              "Aucune presence renseignée.",
+                            )
+                          ],
+                        )
+                      : Flexible(
+                          child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              itemCount: dataAgent!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return CardPresenceToday(
+                                    data: dataAgent![index]);
+                              }),
+                        ),
 
               // Other widgets after GridView
             ],

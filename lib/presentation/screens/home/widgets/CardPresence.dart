@@ -68,15 +68,22 @@ class _CardPresenceState extends State<CardPresence> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      onMapCreated: (controller) {
-        _mapController = controller;
-      },
-      initialCameraPosition: const CameraPosition(
-        target: LatLng(-4.3678433, 15.2520249), // Centrer la carte
-        zoom: 14.0,
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Colors.lightGreen.withOpacity(0.5),
+          title: const Text(
+            "Presences d'aujourdhui",
+          )),
+      body: GoogleMap(
+        onMapCreated: (controller) {
+          _mapController = controller;
+        },
+        initialCameraPosition: const CameraPosition(
+          target: LatLng(-4.3678433, 15.2520249), // Centrer la carte
+          zoom: 14.0,
+        ),
+        markers: _markers,
       ),
-      markers: _markers,
     );
   }
 }
