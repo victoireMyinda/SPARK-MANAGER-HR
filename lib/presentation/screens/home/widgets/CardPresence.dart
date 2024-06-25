@@ -28,7 +28,8 @@ class _CardPresenceState extends State<CardPresence> {
 
     setState(() {
       if (allAgent != null) {
-        dataAgent = List<Map<String, dynamic>>.from(allAgent); // Convert to list of maps
+        dataAgent = List<Map<String, dynamic>>.from(
+            allAgent); // Convert to list of maps
       }
       isLoading = false;
     });
@@ -74,8 +75,10 @@ class _CardPresenceState extends State<CardPresence> {
           ? Center(child: CircularProgressIndicator())
           : GoogleMap(
               initialCameraPosition: CameraPosition(
-                target: LatLng(dataAgent[0]["location"]["lat"],
-                    dataAgent[0]["location"]["lng"]), // Initial position based on first agent
+                target: LatLng(
+                    dataAgent[0]["location"]["lat"],
+                    dataAgent[0]["location"]
+                        ["lng"]), // Initial position based on first agent
                 zoom: 14.0,
               ),
               markers: _markers,
