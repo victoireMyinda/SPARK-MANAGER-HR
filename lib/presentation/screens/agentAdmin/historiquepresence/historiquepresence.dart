@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location_agent/data/repository/signUp_repository.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardagent.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/widget/cardhistoriquepresence.dart';
-import 'package:location_agent/presentation/screens/signupagent/signupagent.dart';
 import 'package:lottie/lottie.dart';
 
 class HistoriquePresence extends StatefulWidget {
@@ -90,7 +88,7 @@ class _HistoriquePresenceState extends State<HistoriquePresence> {
                           children: [
                             Lottie.asset("assets/images/last-transaction.json",
                                 height: 200),
-                            const Text("Aucun agent n'a été enregistré.")
+                            const Text("Aucune donnée enregistrée.")
                           ],
                         )
                       : Flexible(
