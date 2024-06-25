@@ -29,12 +29,22 @@ class _CardPresenceState extends State<CardPresence> {
     setState(() {
       if (allAgent != null) {
         dataAgent = List<Map<String, dynamic>>.from(allAgent);
+        // Log all coordinates
+        printCoordinates();
       }
       isLoading = false;
     });
 
     // Update markers after data is loaded
     updateMarkers();
+  }
+
+  void printCoordinates() {
+    for (var agent in dataAgent) {
+      double latitude = agent["location"]["lat"];
+      double longitude = agent["location"]["lng"];
+      print('Agent ID: ${agent["_id"]}, Latitude: $latitude, Longitude: $longitude');
+    }
   }
 
   void updateMarkers() {
@@ -62,6 +72,7 @@ class _CardPresenceState extends State<CardPresence> {
           ),
         );
       }
+
       // Adjust the map to show all markers
       _showAllMarkers();
     });
@@ -74,7 +85,6 @@ class _CardPresenceState extends State<CardPresence> {
         return marker.position;
       }).toList();
 
-      // Calculate the northeast and southwest bounds
       LatLng northeast = LatLng(
         positions.map((pos) => pos.latitude).reduce((a, b) => a > b ? a : b),
         positions.map((pos) => pos.longitude).reduce((a, b) => a > b ? a : b),
@@ -87,7 +97,6 @@ class _CardPresenceState extends State<CardPresence> {
 
       bounds = LatLngBounds(northeast: northeast, southwest: southwest);
 
-      // Update the camera to show all markers
       _mapController.animateCamera(CameraUpdate.newLatLngBounds(bounds, 50));
     }
   }
@@ -121,8 +130,7 @@ class _CardPresenceState extends State<CardPresence> {
                 markers: _markers,
                 onMapCreated: (GoogleMapController controller) {
                   _mapController = controller;
-                  // Adjust map to show all markers once map is created
-                  _showAllMarkers();
+                  _showAllMarkers(); // Adjust map to show all markers
                 },
               ),
       ),
