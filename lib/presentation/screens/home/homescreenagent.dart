@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
 import 'package:location_agent/presentation/screens/home/widgets/cardPresencebyagent.dart';
-import 'package:location_agent/presentation/screens/home/widgets/cardagentpresence.dart';
 import 'package:location_agent/presentation/screens/setting/setting.dart';
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
