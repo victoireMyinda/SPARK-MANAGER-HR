@@ -81,15 +81,12 @@ class _HorairesScreenState extends State<HorairesScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Horaires",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
+                  children:const [
                     Text(
-                      dataHoraire!.length.toString(),
-                      style: const TextStyle(fontWeight: FontWeight.w500),
+                      "Horaire officiel de travail",
+                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                     ),
+                    
                   ],
                 ),
               ),

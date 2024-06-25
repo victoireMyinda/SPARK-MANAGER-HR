@@ -409,36 +409,43 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
-              isLoading == true
-                  ? Flexible(
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: 3,
-                        itemBuilder: (BuildContext context, int index) {
-                          return const CardAgentPlaceholder();
-                        },
-                      ),
-                    )
-                  : dataAgentLength == 0
-                      ? Column(
-                          children: [
-                            Lottie.asset("assets/images/last-transaction.json",
-                                height: 200),
-                            const Text(
-                              "Aucune donnée trouvée.",
-                            )
-                          ],
-                        )
-                      : Flexible(
-                          child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemCount: dataAgent!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return CardPresenceByAgent(
-                                    data: dataAgent![index]);
-                              }),
-                        ),
+
+              
+              // const SizedBox(height: 10),
+              //  BlocBuilder<SignupCubit, SignupState>(
+              //                 builder: (context, state) {
+              //                   return isLoading == true
+              //     ? Flexible(
+              //         child: ListView.builder(
+              //           scrollDirection: Axis.vertical,
+              //           itemCount: 3,
+              //           itemBuilder: (BuildContext context, int index) {
+              //             return const CardAgentPlaceholder();
+              //           },
+              //         ),
+              //       )
+              //     : state.field!["data"]["avatarUrl"] == 0
+              //         ? Column(
+              //             children: [
+              //               Lottie.asset("assets/images/last-transaction.json",
+              //                   height: 200),
+              //               const Text(
+              //                 "Aucune donnée trouvée.",
+              //               )
+              //             ],
+              //           )
+              //         : Flexible(
+              //             child: ListView.builder(
+              //                 scrollDirection: Axis.vertical,
+              //                 itemCount: dataAgent!.length,
+              //                 itemBuilder: (BuildContext context, int index) {
+              //                   return CardPresenceByAgent(
+              //                       data: dataAgent![index]);
+              //                 }),
+              //           );
+              //                 },
+              //               ),
+              
             ],
           ),
         ),

@@ -24,68 +24,108 @@ class _CardPresenceState extends State<CardPresence> {
 
   void loadData() async {
     Map<String, dynamic>? response = await SignUpRepository.getAllPresence();
-    List<dynamic>? allAgent = response["data"];
+    List<dynamic>? allAgent = response?["data"];
 
     setState(() {
       if (allAgent != null) {
-        dataAgent = List<Map<String, dynamic>>.from(
-            allAgent); // Convert to list of maps
+        dataAgent = List<Map<String, dynamic>>.from(allAgent);
       }
       isLoading = false;
     });
 
-    // Once you have dataAgent populated, update markers
+    // Update markers after data is loaded
     updateMarkers();
   }
 
   void updateMarkers() {
-    _markers.clear(); // Clear existing markers
-    for (int i = 0; i < dataAgent.length; i++) {
-      Map<String, dynamic> agent = dataAgent[i];
-      String id = agent["_id"];
-      double latitude = agent["location"]["lat"];
-      double longitude = agent["location"]["lng"];
-      String firstname = agent["agent"]["firstname"];
-      String lastname = agent["agent"]["lastname"];
-      String action = agent["action"];
-      String createdat = agent["created_at"];
+    setState(() {
+      _markers.clear(); // Clear existing markers
+      for (int i = 0; i < dataAgent.length; i++) {
+        Map<String, dynamic> agent = dataAgent[i];
+        String id = agent["_id"];
+        double latitude = agent["location"]["lat"];
+        double longitude = agent["location"]["lng"];
+        String firstname = agent["agent"]["firstname"];
+        String lastname = agent["agent"]["lastname"];
+        String action = agent["action"];
+        String createdat = agent["created_at"];
 
-      // Create a marker for each agent
-      _markers.add(
-        Marker(
-          markerId: MarkerId(id),
-          position: LatLng(latitude, longitude),
-          infoWindow: InfoWindow(
-            title: "Agent $firstname $lastname",
-            snippet: "$action ($createdat)",
+        // Create a marker for each agent
+        _markers.add(
+          Marker(
+            markerId: MarkerId(id),
+            position: LatLng(latitude, longitude),
+            infoWindow: InfoWindow(
+              title: "Agent $firstname $lastname",
+              snippet: "$action ($createdat)",
+            ),
           ),
-        ),
+        );
+      }
+      // Adjust the map to show all markers
+      _showAllMarkers();
+    });
+  }
+
+  void _showAllMarkers() {
+    if (_markers.isNotEmpty) {
+      LatLngBounds bounds;
+      List<LatLng> positions = _markers.map((marker) {
+        return marker.position;
+      }).toList();
+
+      // Calculate the northeast and southwest bounds
+      LatLng northeast = LatLng(
+        positions.map((pos) => pos.latitude).reduce((a, b) => a > b ? a : b),
+        positions.map((pos) => pos.longitude).reduce((a, b) => a > b ? a : b),
       );
+
+      LatLng southwest = LatLng(
+        positions.map((pos) => pos.latitude).reduce((a, b) => a < b ? a : b),
+        positions.map((pos) => pos.longitude).reduce((a, b) => a < b ? a : b),
+      );
+
+      bounds = LatLngBounds(northeast: northeast, southwest: southwest);
+
+      // Update the camera to show all markers
+      _mapController.animateCamera(CameraUpdate.newLatLngBounds(bounds, 50));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightGreen.withOpacity(0.5),
-        title: Text("Presences d'aujourd'hui"),
-      ),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(
-                    dataAgent[0]["location"]["lat"],
-                    dataAgent[0]["location"]
-                        ["lng"]), // Initial position based on first agent
-                zoom: 14.0,
+    return RefreshIndicator(
+      displacement: 250,
+      backgroundColor: Colors.white,
+      color: Colors.lightGreen.withOpacity(0.5),
+      strokeWidth: 3,
+      triggerMode: RefreshIndicatorTriggerMode.onEdge,
+      onRefresh: () async {
+        loadData();
+        updateMarkers();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.lightGreen.withOpacity(0.5),
+          title: Text("Presences d'aujourd'hui"),
+        ),
+        body: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: dataAgent.isNotEmpty
+                      ? LatLng(dataAgent[0]["location"]["lat"], dataAgent[0]["location"]["lng"])
+                      : LatLng(0, 0), // Fallback to (0,0) if dataAgent is empty
+                  zoom: 14.0,
+                ),
+                markers: _markers,
+                onMapCreated: (GoogleMapController controller) {
+                  _mapController = controller;
+                  // Adjust map to show all markers once map is created
+                  _showAllMarkers();
+                },
               ),
-              markers: _markers,
-              onMapCreated: (GoogleMapController controller) {
-                _mapController = controller;
-              },
-            ),
+      ),
     );
   }
 }
