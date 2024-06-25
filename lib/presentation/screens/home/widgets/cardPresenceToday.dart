@@ -53,38 +53,43 @@ class _CardPresenceTodayState extends State<CardPresenceToday> {
               const Spacer(),
               Column(
                 children: [
-                  // Container(
-                  //   width: MediaQuery.of(context).size.width - 115,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //         Text("Nom",style: TextStyle(fontSize: 12),),
-                  //       BlocBuilder<SignupCubit, SignupState>(
-                  //         builder: (context, state) {
-                  //           return Row(
-                  //             children: [
-                              
-                  //               Text(
-                  //                 '${state.field!["data"]["firstname"]} ${state.field!["data"]["lastname"]}',
-                  //                 style: const TextStyle(
-                  //                   fontWeight: FontWeight.bold,
-                  //                   fontSize: 12.0,
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           );
-                  //         },
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 115,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Nom",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                        BlocBuilder<SignupCubit, SignupState>(
+                          builder: (context, state) {
+                            return Row(
+                              children: [
+                                Text(
+                                  '${widget.data!["agent"]["firstname"]} ${widget.data!["agent"]["lastname"]}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12.0,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 10),
                   Container(
                     width: MediaQuery.of(context).size.width - 115,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Action pointage",style: TextStyle(fontSize: 12),),
+                        Text(
+                          "Action pointage",
+                          style: TextStyle(fontSize: 12),
+                        ),
                         BlocBuilder<SignupCubit, SignupState>(
                           builder: (context, state) {
                             return Text(
@@ -97,13 +102,18 @@ class _CardPresenceTodayState extends State<CardPresenceToday> {
                       ],
                     ),
                   ),
-                  Divider(thickness: 1,),
+                  Divider(
+                    thickness: 1,
+                  ),
                   Container(
                     width: MediaQuery.of(context).size.width - 115,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Date",style: TextStyle(fontSize: 12),),
+                        Text(
+                          "Date",
+                          style: TextStyle(fontSize: 12),
+                        ),
                         Text(widget.data!["created_at"],
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 11)),

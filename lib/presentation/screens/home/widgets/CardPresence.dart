@@ -12,57 +12,54 @@ class CardPresence extends StatefulWidget {
 class _CardPresenceState extends State<CardPresence> {
   final Set<Marker> _markers = {};
   late GoogleMapController _mapController;
-  BitmapDescriptor? agentIcon;
+
+  List<Map<String, dynamic>> dataAgent = []; // List of agents
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    // _loadCustomMarker();
-    _fetchPresenceData();
+    loadData();
   }
 
-  // Future<void> _loadCustomMarker() async {
-  //   agentIcon = await BitmapDescriptor.fromAssetImage(
-  //     const ImageConfiguration(size: Size(48, 48)),
-  //     'assets/images/user.jpg',
-  //   );
-  //   setState(() {});
-  // }
+  void loadData() async {
+    Map<String, dynamic>? response = await SignUpRepository.getAllPresence();
+    List<dynamic>? allAgent = response["data"];
 
-  Future<void> _fetchPresenceData() async {
-    try {
-      final response = await SignUpRepository.getAllPresence();
-      List? data = response["data"];
-
-      if (data != null && data.isNotEmpty) {
-        setState(() {
-          for (var item in data) {
-            if (item != null && item['location'] != null) {
-              final double latitude = item['location']['lat'];
-              final double longitude = item['location']['lng'];
-              final String action = item['action'] ?? 'N/A';
-              final String createdAt = item['created_at'] ?? 'N/A';
-              final String markerId = item['_id'] ?? 'N/A';
-
-              _markers.add(
-                Marker(
-                  markerId: MarkerId(markerId),
-                  position: LatLng(latitude, longitude),
-                  infoWindow: InfoWindow(
-                    title: action,
-                    snippet: 'Pointé le: $createdAt',
-                  ),
-                  icon: agentIcon ?? BitmapDescriptor.defaultMarker,
-                ),
-              );
-            }
-          }
-        });
-      } else {
-        print('Aucune donnée disponible.');
+    setState(() {
+      if (allAgent != null) {
+        dataAgent = List<Map<String, dynamic>>.from(allAgent); // Convert to list of maps
       }
-    } catch (e) {
-      print('Erreur lors de la récupération des données: $e');
+      isLoading = false;
+    });
+
+    // Once you have dataAgent populated, update markers
+    updateMarkers();
+  }
+
+  void updateMarkers() {
+    _markers.clear(); // Clear existing markers
+    for (int i = 0; i < dataAgent.length; i++) {
+      Map<String, dynamic> agent = dataAgent[i];
+      String id = agent["_id"];
+      double latitude = agent["location"]["lat"];
+      double longitude = agent["location"]["lng"];
+      String firstname = agent["agent"]["firstname"];
+      String lastname = agent["agent"]["lastname"];
+      String action = agent["action"];
+      String createdat = agent["created_at"];
+
+      // Create a marker for each agent
+      _markers.add(
+        Marker(
+          markerId: MarkerId(id),
+          position: LatLng(latitude, longitude),
+          infoWindow: InfoWindow(
+            title: "Agent $firstname $lastname",
+            snippet: "$action ($createdat)",
+          ),
+        ),
+      );
     }
   }
 
@@ -70,20 +67,22 @@ class _CardPresenceState extends State<CardPresence> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.lightGreen.withOpacity(0.5),
-          title: const Text(
-            "Presences d'aujourdhui",
-          )),
-      body: GoogleMap(
-        onMapCreated: (controller) {
-          _mapController = controller;
-        },
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(-4.3678433, 15.2520249), // Centrer la carte
-          zoom: 14.0,
-        ),
-        markers: _markers,
+        backgroundColor: Colors.lightGreen.withOpacity(0.5),
+        title: Text("Presences d'aujourd'hui"),
       ),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(dataAgent[0]["location"]["lat"],
+                    dataAgent[0]["location"]["lng"]), // Initial position based on first agent
+                zoom: 14.0,
+              ),
+              markers: _markers,
+              onMapCreated: (GoogleMapController controller) {
+                _mapController = controller;
+              },
+            ),
     );
   }
 }

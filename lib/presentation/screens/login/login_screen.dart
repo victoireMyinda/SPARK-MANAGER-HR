@@ -186,6 +186,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   "pwd": state.field!["password"],
                                 };
 
+                                // print(datalogin);
+
                                 TransAcademiaLoadingDialog.show(context);
                                 Map<String, dynamic> result =
                                     await SignUpRepository.login(datalogin);

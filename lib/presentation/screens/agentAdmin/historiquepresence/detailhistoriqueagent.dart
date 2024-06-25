@@ -63,7 +63,7 @@ class _DetailHistoriqueAgentState extends State<DetailHistoriqueAgent> {
                 Expanded(
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Colors.white,
                     ),
                     child: Padding(
@@ -75,51 +75,37 @@ class _DetailHistoriqueAgentState extends State<DetailHistoriqueAgent> {
                           return Card(
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             elevation: 2,
-                            child: pointing == 0
-                                ? Column(
-                                    children: [
-                                      Lottie.asset(
-                                          "assets/images/nodata.png",
-                                          height: 200),
-                                      const Text("Aucune donnée enregistrée.")
-                                    ],
-                                  )
-                                : ListTile(
-                                    leading: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                LocationScreen(
-                                              agentName:
-                                                  '${widget.data!["as_user"]["username"]}',
-                                              latitude: pointing["location"]
-                                                  ["lat"],
-                                              longitude: pointing["location"]
-                                                  ["lng"],
-                                              action: pointing["action"],
-                                              date: pointing["created_at"],
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: const Icon(
-                                        Icons.location_on,
-                                        color: Colors.green,
+                            child: ListTile(
+                              leading: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LocationScreen(
+                                        agentName:
+                                            '${widget.data!["as_user"]["username"]}',
+                                        latitude: pointing["location"]["lat"],
+                                        longitude: pointing["location"]["lng"],
+                                        action: pointing["action"],
+                                        date: pointing["created_at"],
                                       ),
                                     ),
-                                    title:
-                                        Text('Action: ${pointing["action"]}'),
-                                    subtitle: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                            'Location: Lat ${pointing["location"]["lat"]}, Lng ${pointing["location"]["lng"]}'),
-                                      ],
-                                    ),
-                                  ),
+                                  );
+                                },
+                                child: const Icon(
+                                  Icons.location_on,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              title: Text('Action: ${pointing["action"]}'),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      'Location: Lat ${pointing["location"]["lat"]}, Lng ${pointing["location"]["lng"]}'),
+                                ],
+                              ),
+                            ),
                           );
                         },
                       ),
