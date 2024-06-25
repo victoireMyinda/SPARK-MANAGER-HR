@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:location_agent/presentation/screens/home/widgets/CardPresence.dart';
 import 'package:location_agent/presentation/screens/setting/setting.dart';
 import 'package:location_agent/presentation/widgets/imageview.dart';
 import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
@@ -100,10 +101,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
 
               CardMenu(),
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(child: CardPresence())
 
               // Other widgets after GridView
             ],

@@ -234,6 +234,31 @@ class SignUpRepository {
     }
   }
 
+   static Future<Map<String, dynamic>> getAllPresence() async {
+    
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://spark-manager-rh-764791cdc043.herokuapp.com/api/v1/dashboard/point'));
+
+    http.StreamedResponse response = await request.send();
+
+    String responseBody = await response.stream.bytesToString();
+
+    Map<String, dynamic> responseJson = json.decode(responseBody);
+
+    int statusCode = responseJson['code'];
+
+    if (statusCode == 200) {
+      List? data = responseJson['data'];
+      return {"status": statusCode, "data": data};
+    } else {
+      return {
+        "status": statusCode,
+      };
+    }
+  }
+
   static Future<Map<String, dynamic>> gettAllAgent() async {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     // String? token = prefs.getString("token");

@@ -7,7 +7,6 @@ import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.da
 import 'package:location_agent/presentation/screens/agentAdmin/agents/listeagent.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
 import 'package:location_agent/presentation/screens/agentAdmin/horaire/listhoraire.dart';
-import 'package:location_agent/presentation/screens/horaire/horaire.dart';
 
 class CardMenu extends StatefulWidget {
   CardMenu({
@@ -25,9 +24,9 @@ class _CardMenuState extends State<CardMenu> {
       margin: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Container(
         padding: const EdgeInsets.all(20),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(
+        decoration: BoxDecoration(
+          color: Colors.lightGreen.withOpacity(0.5),
+          borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),
         ),
@@ -51,8 +50,9 @@ class _CardMenuState extends State<CardMenu> {
                       child: Container(
                         width: 60,
                         height: 60,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          // border: Border.all(color: Colors.green),
                           shape: BoxShape.circle,
                         ),
                         child: Row(
@@ -73,7 +73,7 @@ class _CardMenuState extends State<CardMenu> {
                     const Text(
                       "Agents",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w400,
                         fontSize: 10,
                       ),
                     )
@@ -94,8 +94,9 @@ class _CardMenuState extends State<CardMenu> {
                       child: Container(
                         width: 60,
                         height: 60,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green),
+                        decoration: const BoxDecoration(
+                           color: Colors.white,
+                          // border: Border.all(color: Colors.green),
                           shape: BoxShape.circle,
                         ),
                         child: Row(
@@ -116,7 +117,7 @@ class _CardMenuState extends State<CardMenu> {
                     const Text(
                       "Horaire",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                         fontWeight: FontWeight.w400,
                         fontSize: 10,
                       ),
                     )
@@ -137,8 +138,9 @@ class _CardMenuState extends State<CardMenu> {
                       child: Container(
                         width: 60,
                         height: 60,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green),
+                        decoration:const BoxDecoration(
+                           color: Colors.white,
+                          // border: Border.all(color: Colors.green),
                           shape: BoxShape.circle,
                         ),
                         child: Row(
@@ -159,7 +161,7 @@ class _CardMenuState extends State<CardMenu> {
                     const Text(
                       "Historique presence",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                         fontWeight: FontWeight.w400,
                         fontSize: 10,
                       ),
                     )
