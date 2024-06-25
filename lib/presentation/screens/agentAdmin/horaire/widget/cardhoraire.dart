@@ -36,32 +36,33 @@ class _CardHoraireState extends State<CardHoraire> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Heure d'arriée : ${widget.data!["start"]}",
+                    "ARRIVEE : ${widget.data!["start"]}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const SizedBox(height: 10,),
                   Text(
-                    "Heure de cloture : ${widget.data!["end"]}",
+                    "DEPART : ${widget.data!["end"]}",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[600],
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      InkWell(
-                        child: Icon(Icons.edit,),
-                      ),
-                      InkWell(
-                        child: Icon(Icons.delete, ),
-                        // onPressed: onDelete,
-                      ),
-                    ],
-                  ),
+                  // const SizedBox(height: 10),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: const [
+                  //     InkWell(
+                  //       child: Icon(Icons.edit,),
+                  //     ),
+                  //     InkWell(
+                  //       child: Icon(Icons.delete, ),
+                  //       // onPressed: onDelete,
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
