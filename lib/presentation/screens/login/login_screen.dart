@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:location_agent/data/repository/signUp_repository.dart';
 import 'package:location_agent/presentation/screens/login/widgets/appbarlogin.dart';
 import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
@@ -44,12 +45,12 @@ class _LoginScreenState extends State<LoginScreen> {
           physics: const NeverScrollableScrollPhysics(),
           slivers: <Widget>[
             const RecipeDetailAppBarLogin(
-              height: 180,
+              height: 230,
               image: "image: widget.image",
             ),
             SliverToBoxAdapter(
               child: Container(
-                color: Colors.white,
+                color: Color.fromARGB(31, 8, 175, 131),
                 height: MediaQuery.of(context).size.height,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 0.0),
@@ -61,30 +62,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
-                            "Connexion ",
-                            style: TextStyle(fontWeight: FontWeight.w400),
+                            "Spark Manager-RH ",
+                            style: GoogleFonts.montserrat(
+                                fontSize: 17, fontWeight: FontWeight.w600),
                             textAlign: TextAlign.center,
                           ),
                         ],
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       Container(
                         height: 60,
-                        decoration: BoxDecoration(
+                        decoration:const  BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(
-                                AdaptiveTheme.of(context).mode.name != "dark"
-                                    ? "assets/images/locate.png"
-                                    : "assets/images/locate.png"),
+                            image: AssetImage("assets/images/locate.png"),
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       BlocBuilder<SignupCubit, SignupState>(
                         builder: (context, state) {
@@ -96,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 50.0,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
+                                  // color: Colors.white,
                                 ),
                                 child: TransAcademiaNameInput(
                                   controller: phoneController,
@@ -110,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                       const SizedBox(
-                        height: 5.0,
+                        height: 20.0,
                       ),
                       BlocBuilder<SignupCubit, SignupState>(
                         builder: (context, state) {
@@ -131,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 20.0,
                       ),
                       BlocBuilder<SignupCubit, SignupState>(
                         builder: (context, state) {
@@ -231,31 +230,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                         },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                            height: 50.0,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.lightGreen.withOpacity(0.5),
-                              ),
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.fingerprint_outlined,
-                                  size: 40,
-                                  color: Colors.lightGreen.withOpacity(0.8),
-                                )
-                              ],
-                            )),
                       ),
                       const SizedBox(
                         height: 10,

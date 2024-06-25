@@ -1,18 +1,18 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/agents/listeagent.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
+import 'package:location_agent/presentation/screens/agentAdmin/horaire/listhoraire.dart';
+import 'package:location_agent/presentation/screens/horaire/horaire.dart';
 
 class CardMenu extends StatefulWidget {
-  String? icon;
-  String? title;
-  bool? active, isNotShadow;
-  CardMenu(
-      {super.key,
-      this.icon,
-      this.title,
-      required this.active,
-      this.isNotShadow});
+  CardMenu({
+    super.key,
+  });
 
   @override
   State<CardMenu> createState() => _CardMenuState();
@@ -22,108 +22,154 @@ class _CardMenuState extends State<CardMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15.0),
-        boxShadow: [
-          BoxShadow(
-            color: const Color.fromARGB(255, 225, 225, 225).withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: const Offset(0, 1),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
           ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SvgPicture.asset(
-            widget.icon.toString(),
-            color: Color.fromARGB(255, 131, 105, 95),
-            height: 30,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            widget.title.toString(),
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
-          )
-        ],
+        ),
+        child: BlocBuilder<SignupCubit, SignupState>(
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ListeAgentsScreen(backNavigation: false),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/icons/user-add.svg",
+                              width: 25,
+                              // color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "Agents",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10,
+                      ),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                HorairesScreen(backNavigation: false),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/icons/notif-trans-grey.svg",
+                              width: 25,
+                              // color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "Horaire",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10,
+                      ),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                HistoriquePresence(backNavigation: false),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/icons/site.svg",
+                              width: 25,
+                              // color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "Historique presence",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
-
-  // Widget _buildActiveCard() {
-  //   return Container(
-  //     width: 100,
-  //     padding: const EdgeInsets.all(5),
-  //     decoration: BoxDecoration(
-  //       borderRadius: BorderRadius.circular(20.0),
-  //       color:  Colors.white,
-  //       border: Border.all(
-  //           width: 1,
-  //           color:  Colors.white
-  //            ),
-  //     ),
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       crossAxisAlignment: CrossAxisAlignment.center,
-  //       children: [
-  //         SvgPicture.asset(
-  //           widget.icon.toString(),
-  //           width: 60,
-  //           color: kelasiColor,
-  //         ),
-  //         const SizedBox(
-  //           height: 30,
-  //         ),
-  //         Text(
-  //           widget.title.toString(),
-  //           textAlign: TextAlign.center,
-  //           style: const TextStyle(
-  //             fontSize: 12,
-  //             color: Colors.black,
-  //             // fontWeight: FontWeight.bold,
-  //           ),
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget _buildInactiveCard() {
-  //   return Container(
-  //     height: 120.0,
-  //     width: 120.0,
-  //     padding: const EdgeInsets.all(5),
-  //     decoration: BoxDecoration(
-  //       color: Colors.black26,
-  //       borderRadius: BorderRadius.circular(20.0),
-  //     ),
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       crossAxisAlignment: CrossAxisAlignment.center,
-  //       children: [
-  //         SvgPicture.asset(
-  //           widget.icon.toString(),
-  //           width: 40,
-  //         ),
-  //         const SizedBox(
-  //           height: 10,
-  //         ),
-  //         Text(
-  //           widget.title.toString(),
-  //           textAlign: TextAlign.center,
-  //           style: const TextStyle(
-  //             fontSize: 10,
-  //             fontWeight: FontWeight.w300,
-  //           ),
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
 }
