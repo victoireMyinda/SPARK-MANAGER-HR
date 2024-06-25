@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    checkConnect();
+     checkConnect();
   }
 
   @override
@@ -34,26 +34,28 @@ class _SplashScreenState extends State<SplashScreen> {
 
   checkConnect() async {
     WidgetsFlutterBinding.ensureInitialized();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var id = prefs.getString('id');
-    var nom = prefs.getString('nom');
-    var postnom = prefs.getString('postnom');
-    var prenom = prefs.getString('prenom');
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // var id = prefs.getString('id');
+    // var nom = prefs.getString('nom');
+    // var postnom = prefs.getString('postnom');
+    // var prenom = prefs.getString('prenom');
 
     Future.delayed(const Duration(seconds: 5)).then((val) {
-      if (id == null) {    
-        Navigator.of(context)
+      Navigator.of(context)
             .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-      } else {
-        BlocProvider.of<SignupCubit>(context)
-            .updateField(context, field: "nom", data: nom);
-        BlocProvider.of<SignupCubit>(context)
-            .updateField(context, field: "postnom", data: postnom);
-        BlocProvider.of<SignupCubit>(context)
-            .updateField(context, field: "prenom", data: prenom);
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            '/routestack', (Route<dynamic> route) => false);
-      }
+      // if (id == null) {    
+      //   Navigator.of(context)
+      //       .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+      // } else {
+      //   BlocProvider.of<SignupCubit>(context)
+      //       .updateField(context, field: "nom", data: nom);
+      //   BlocProvider.of<SignupCubit>(context)
+      //       .updateField(context, field: "postnom", data: postnom);
+      //   BlocProvider.of<SignupCubit>(context)
+      //       .updateField(context, field: "prenom", data: prenom);
+      //   Navigator.of(context).pushNamedAndRemoveUntil(
+      //       '/routestack', (Route<dynamic> route) => false);
+      // }
     });
   }
 
@@ -71,8 +73,8 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Image.asset(
                 'assets/images/locate.png',
-                width: 300.0,
-                height: 300.0,
+                width: 150.0,
+                height: 150.0,
                 // fit: BoxFit.cover,
               ),
               const SizedBox(

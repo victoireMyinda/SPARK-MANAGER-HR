@@ -144,9 +144,7 @@ class _HomeScreenAgentState extends State<HomeScreenAgent> {
                           children: [
                             BlocBuilder<SignupCubit, SignupState>(
                               builder: (context, state) {
-                                return Text(state.field!["role"] == true
-                                    ? "Admin"
-                                    : "Agent");
+                                return const Text("Agent");
                               },
                             ),
                             const SizedBox(height: 6),

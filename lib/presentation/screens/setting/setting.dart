@@ -116,25 +116,28 @@ class _SettingScreenState extends State<SettingScreen> {
                             return TextButton(
                               child: const Text("Confirmer"),
                               onPressed: () async {
-                                BlocProvider.of<SignupCubit>(context)
-                                    .updateField(context,
-                                        field: "phone", data: "");
-                                BlocProvider.of<SignupCubit>(context)
-                                    .updateField(context,
-                                        field: "password", data: "");
-                                BlocProvider.of<SignupCubit>(context)
-                                    .updateField(context,
-                                        field: "nom", data: "");
+                                // BlocProvider.of<SignupCubit>(context)
+                                //     .updateField(context,
+                                //         field: "phone", data: "");
+                                // BlocProvider.of<SignupCubit>(context)
+                                //     .updateField(context,
+                                //         field: "password", data: "");
+                                // BlocProvider.of<SignupCubit>(context)
+                                //     .updateField(context,
+                                //         field: "nom", data: "");
 
-                                BlocProvider.of<SignupCubit>(context)
-                                    .updateField(context,
-                                        field: "postnom", data: "");
-                                BlocProvider.of<SignupCubit>(context)
-                                    .updateField(context,
-                                        field: "prenom", data: "");
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.clear();
+                                // BlocProvider.of<SignupCubit>(context)
+                                //     .updateField(context,
+                                //         field: "postnom", data: "");
+                                // BlocProvider.of<SignupCubit>(context)
+                                //     .updateField(context,
+                                //         field: "prenom", data: "");
+                                // BlocProvider.of<SignupCubit>(context)
+                                //     .updateField(context,
+                                //         field: "role", data: "");
+                                // SharedPreferences prefs =
+                                //     await SharedPreferences.getInstance();
+                                // prefs.clear();
                                 Navigator.of(context).pushNamedAndRemoveUntil(
                                     '/login', (Route<dynamic> route) => false);
                               },

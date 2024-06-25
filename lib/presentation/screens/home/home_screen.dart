@@ -95,9 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             BlocBuilder<SignupCubit, SignupState>(
                               builder: (context, state) {
-                                return Text(state.field!["role"] == true
-                                    ? "Admin"
-                                    : "Agent");
+                                return const Text("Admin");
                               },
                             ),
                             const SizedBox(height: 6),
@@ -149,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 20),
               CardMenu(),
-                const SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 child: Row(

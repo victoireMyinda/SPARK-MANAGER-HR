@@ -60,6 +60,8 @@ class _DetailHistoriqueAgentState extends State<DetailHistoriqueAgent> {
                     ),
                   ),
                 ),
+
+               const  SizedBox(height: 40,),
                 pointings.isEmpty
                     ? Expanded(
                         child: Column(

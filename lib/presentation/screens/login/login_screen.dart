@@ -193,9 +193,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     await SignUpRepository.login(datalogin);
                                 int statusCode = result['status'];
                                 Map? data = result['data'];
+                                bool role = data!['as_user']['is_root'];
 
                                 if (statusCode == 200) {
-                                  bool role = data!['as_user']['is_root'];
                                   BlocProvider.of<SignupCubit>(context)
                                       .updateField(context,
                                           field: "data", data: data);
@@ -208,12 +208,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   prefs.setBool(
                                       'role', data['as_user']['is_root']);
 
-                                  role == true
+                                  data['as_user']['is_root'] == true
                                       ? Navigator.of(context)
                                           .pushNamedAndRemoveUntil(
                                               '/routestack',
                                               (Route<dynamic> route) => false)
-                                      : prefs.setString('idAgent', data['_id']);
+                                      : 
                                   Navigator.of(context).pushNamedAndRemoveUntil(
                                       '/routestackAgent',
                                       (Route<dynamic> route) => false);
