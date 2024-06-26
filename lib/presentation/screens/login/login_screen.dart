@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 import 'dart:ffi';
 import 'dart:io';
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -186,14 +185,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   "pwd": state.field!["password"],
                                 };
 
-                                // print(datalogin);
+                                //  print(datalogin);
 
                                 TransAcademiaLoadingDialog.show(context);
                                 Map<String, dynamic> result =
                                     await SignUpRepository.login(datalogin);
                                 int statusCode = result['status'];
                                 Map? data = result['data'];
-                                bool role = data!['as_user']['is_root'];
+                                // bool role = data!['as_user']['is_root'];
 
                                 if (statusCode == 200) {
                                   BlocProvider.of<SignupCubit>(context)
@@ -203,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   BlocProvider.of<SignupCubit>(context)
                                       .updateField(context,
                                           field: "role",
-                                          data: data['as_user']['is_root']);
+                                          data: data!['as_user']['is_root']);
 
                                   prefs.setBool(
                                       'role', data['as_user']['is_root']);
@@ -213,10 +212,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                           .pushNamedAndRemoveUntil(
                                               '/routestack',
                                               (Route<dynamic> route) => false)
-                                      : 
-                                  Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/routestackAgent',
-                                      (Route<dynamic> route) => false);
+                                      : Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                              '/routestackAgent',
+                                              (Route<dynamic> route) => false);
                                 } else {
                                   TransAcademiaLoadingDialog.stop(context);
                                   TransAcademiaDialogError.show(
