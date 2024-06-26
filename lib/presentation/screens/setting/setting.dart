@@ -10,7 +10,7 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: const Text("Profile"),),
+      appBar: AppBar(title: const Text("Profile"), backgroundColor: Colors.lightGreen.withOpacity(0.8)),
       body: Column(
         children: [
           Stack(
@@ -70,13 +70,15 @@ class SettingScreen extends StatelessWidget {
                     // Action pour "À propos"
                   },
                 ),
-                ProfileDetail(
-                  icon: Icons.location_on,
-                  text: 'Localisation',
-                  onTap: () {
-                    // Action pour "Localisation"
-                  },
-                ),
+
+                const Divider(thickness: 1,),
+                // ProfileDetail(
+                //   icon: Icons.location_on,
+                //   text: 'Localisation',
+                //   onTap: () {
+                //     // Action pour "Localisation"
+                //   },
+                // ),
                 ProfileDetail(
                   icon: Icons.person,
                   text: 'Profil',
@@ -84,6 +86,7 @@ class SettingScreen extends StatelessWidget {
                     // Action pour "Profil"
                   },
                 ),
+                const Divider(thickness: 1,),
                 ProfileDetail(
                   icon: Icons.logout,
                   text: 'Déconnexion',
