@@ -76,8 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                         height: 60,
                         decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: AssetImage("assets/images/locate.png"),
+                            image: AssetImage("assets/images/logo.png"),
                           ),
                         ),
                       ),
