@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
           physics: const NeverScrollableScrollPhysics(),
           slivers: <Widget>[
             const RecipeDetailAppBarLogin(
-              height: 230,
+              height: 200,
               image: "image: widget.image",
             ),
             SliverToBoxAdapter(
