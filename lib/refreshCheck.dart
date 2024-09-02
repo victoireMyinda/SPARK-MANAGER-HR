@@ -20,8 +20,8 @@ class _RefreshCheckState extends State<RefreshCheck> {
   var androidState;
   var iosState;
 
-  // final Uri _url = Uri.parse('https://play.google.com/store/apps/details?id=com.location.agent');
-  final Uri _url = Uri.parse('market://details?id=com.location.agent');
+  // final Uri _url = Uri.parse('https://play.google.com/store/apps/details?id=com.sparkmanager.rh');
+  final Uri _url = Uri.parse('market://details?id=com.sparkmanager.rh');
 
   // final Uri _urlIOS = Uri.parse('itms-apps://itunes.apple.com/cd/app/id1548263651?mt=8');
   final Uri _urlIOS = Uri.parse('https://itunes.apple.com/cd/app/id6447296971?mt=8');

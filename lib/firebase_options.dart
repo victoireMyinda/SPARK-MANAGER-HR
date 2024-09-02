@@ -68,7 +68,7 @@ class DefaultFirebaseOptions {
     projectId: 'trans-academia',
     storageBucket: 'trans-academia.appspot.com',
     iosClientId: '462205201821-6edb2458rkjjg6f6ltbgo9vrveg08k7v.apps.googleusercontent.com',
-    iosBundleId: 'com.location.agent',
+    iosBundleId: 'com.sparkmanager.rh',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -78,6 +78,6 @@ class DefaultFirebaseOptions {
     projectId: 'trans-academia',
     storageBucket: 'trans-academia.appspot.com',
     iosClientId: '462205201821-6edb2458rkjjg6f6ltbgo9vrveg08k7v.apps.googleusercontent.com',
-    iosBundleId: 'com.location.agent',
+    iosBundleId: 'com.sparkmanager.rh',
   );
 }
