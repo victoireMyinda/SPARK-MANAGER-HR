@@ -4,7 +4,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:custom_qr_generator/custom_qr_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sparkmanagerRH/theme.dart';
+import 'package:sparkmanager_rh/theme.dart';
 
 class QrCodeScreenV2 extends StatefulWidget {
   bool backNavigation;

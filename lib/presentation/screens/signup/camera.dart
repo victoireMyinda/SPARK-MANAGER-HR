@@ -7,7 +7,7 @@
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_native_image/flutter_native_image.dart';
 // import 'package:path_provider/path_provider.dart';
-// import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
+// import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
 // import 'package:http/http.dart' as http;
 // import 'package:path/path.dart' as p ;
 
@@ -122,10 +122,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:sparkmanagerRH/presentation/widgets/buttons/buttonTransAcademia.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/loading.dialog.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/loading.dialogPhone.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/presentation/widgets/buttons/buttonTransAcademia.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/loading.dialog.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/loading.dialogPhone.dart';
 import 'app_helper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
+import 'package:sparkmanager_rh/data/repository/signUp_repository.dart';
 
 class CardPresence extends StatefulWidget {
   CardPresence({Key? key}) : super(key: key);

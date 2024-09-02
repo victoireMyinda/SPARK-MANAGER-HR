@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/localisation.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/signupagent/signupvendeurstep1.dart';
-import 'package:sparkmanagerRH/presentation/widgets/appbarkelasi.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/agents/localisation.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/agents/signupagent/signupvendeurstep1.dart';
+import 'package:sparkmanager_rh/presentation/widgets/appbarkelasi.dart';
 
 class DetailAgentScreen extends StatefulWidget {
   Map? data;

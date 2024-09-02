@@ -1,4 +1,4 @@
-import 'package:sparkmanagerRH/sizeconfig.dart';
+import 'package:sparkmanager_rh/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
 class StepIndicatorWidget extends StatefulWidget {

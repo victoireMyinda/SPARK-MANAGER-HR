@@ -9,15 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:sparkmanagerRH/presentation/screens/signup/signup-step3.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/TransAcademiaDialogError.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/ValidationDialog.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/loading.dialog.dart';
-import 'package:sparkmanagerRH/presentation/widgets/inputs/simplePhoneNumberField.dart';
-import 'package:sparkmanagerRH/routestack.dart';
-import 'package:sparkmanagerRH/theme.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/presentation/screens/signup/signup-step3.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/TransAcademiaDialogError.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/ValidationDialog.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/loading.dialog.dart';
+import 'package:sparkmanager_rh/presentation/widgets/inputs/simplePhoneNumberField.dart';
+import 'package:sparkmanager_rh/routestack.dart';
+import 'package:sparkmanager_rh/theme.dart';
 import 'package:http/http.dart' as http;
 
 class TransAcademiaYesNoDialog {

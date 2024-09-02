@@ -2,9 +2,9 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:sparkmanagerRH/config/router.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/config/router.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';

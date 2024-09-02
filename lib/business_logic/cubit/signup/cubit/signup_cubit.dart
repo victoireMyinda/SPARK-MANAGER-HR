@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
+import 'package:sparkmanager_rh/data/repository/signUp_repository.dart';
 
 part 'signup_state.dart';
 

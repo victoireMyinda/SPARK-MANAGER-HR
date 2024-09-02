@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
-import 'package:sparkmanagerRH/presentation/screens/home/home_screen.dart';
-import 'package:sparkmanagerRH/presentation/screens/login/login_screen.dart';
-import 'package:sparkmanagerRH/presentation/screens/signup/signup-step1.dart';
-import 'package:sparkmanagerRH/presentation/screens/signup/signup-step2.dart';
-import 'package:sparkmanagerRH/presentation/screens/signup/signup-step3.dart';
-import 'package:sparkmanagerRH/presentation/screens/signup/signup.dart';
-import 'package:sparkmanagerRH/refreshCheck.dart';
-import 'package:sparkmanagerRH/routestack.dart';
-import 'package:sparkmanagerRH/routestackagent.dart';
-import 'package:sparkmanagerRH/splashscreen.dart';
-import 'package:sparkmanagerRH/version.dart';
+import 'package:sparkmanager_rh/presentation/screens/home/home_screen.dart';
+import 'package:sparkmanager_rh/presentation/screens/login/login_screen.dart';
+import 'package:sparkmanager_rh/presentation/screens/signup/signup-step1.dart';
+import 'package:sparkmanager_rh/presentation/screens/signup/signup-step2.dart';
+import 'package:sparkmanager_rh/presentation/screens/signup/signup-step3.dart';
+import 'package:sparkmanager_rh/presentation/screens/signup/signup.dart';
+import 'package:sparkmanager_rh/refreshCheck.dart';
+import 'package:sparkmanager_rh/routestack.dart';
+import 'package:sparkmanager_rh/routestackagent.dart';
+import 'package:sparkmanager_rh/splashscreen.dart';
+import 'package:sparkmanager_rh/version.dart';
 
 List<GetPage<dynamic>> getPages() {
   return [

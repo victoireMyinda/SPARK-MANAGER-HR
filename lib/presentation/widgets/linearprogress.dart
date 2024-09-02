@@ -1,5 +1,5 @@
-import 'package:sparkmanagerRH/theme.dart';
-import 'package:sparkmanagerRH/utils/color.util.dart';
+import 'package:sparkmanager_rh/theme.dart';
+import 'package:sparkmanager_rh/utils/color.util.dart';
 import 'package:flutter/material.dart';
 
 

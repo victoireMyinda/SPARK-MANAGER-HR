@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sparkmanagerRH/dark_theme_preference.dart';
+import 'package:sparkmanager_rh/dark_theme_preference.dart';
 
 class DarkThemeProvider with ChangeNotifier {
   DarkThemePreference darkThemePreference = DarkThemePreference();

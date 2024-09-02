@@ -1,8 +1,8 @@
-import 'package:sparkmanagerRH/theme.dart';
+import 'package:sparkmanager_rh/theme.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
-import 'package:sparkmanagerRH/utils/color.util.dart';
+import 'package:sparkmanager_rh/utils/color.util.dart';
 
 class LoadingDialog {
   static show(){

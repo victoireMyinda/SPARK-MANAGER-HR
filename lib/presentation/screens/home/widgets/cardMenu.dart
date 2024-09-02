@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/listeagent.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/horaire/listhoraire.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/agents/listeagent.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/horaire/listhoraire.dart';
 
 class CardMenu extends StatefulWidget {
   CardMenu({

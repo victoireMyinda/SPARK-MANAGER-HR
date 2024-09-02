@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_final_fields, prefer_interpolation_to_compose_strings
 
-import 'package:sparkmanagerRH/locale/all_translations.dart';
+import 'package:sparkmanager_rh/locale/all_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TransAcademiaPasswordField extends StatefulWidget {

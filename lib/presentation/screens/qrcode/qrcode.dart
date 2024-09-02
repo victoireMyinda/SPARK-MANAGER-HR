@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:sparkmanagerRH/presentation/screens/qrcode/qrcodeV2.dart';
-import 'package:sparkmanagerRH/presentation/screens/qrcode/widgets/qrcode.widget.dart';
-import 'package:sparkmanagerRH/presentation/widgets/caroussel.dart';
-import 'package:sparkmanagerRH/theme.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/presentation/screens/qrcode/qrcodeV2.dart';
+import 'package:sparkmanager_rh/presentation/screens/qrcode/widgets/qrcode.widget.dart';
+import 'package:sparkmanager_rh/presentation/widgets/caroussel.dart';
+import 'package:sparkmanager_rh/theme.dart';
 
 import 'widgets/cardMenu.dart';
 import 'widgets/cardNumberCourse.dart';

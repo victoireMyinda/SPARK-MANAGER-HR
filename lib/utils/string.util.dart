@@ -1,4 +1,4 @@
-import 'package:sparkmanagerRH/constants/strings.dart';
+import 'package:sparkmanager_rh/constants/strings.dart';
 
 class StringFormat {
   static String stateInfoUrl = 'https://api.trans-academia.cd/';

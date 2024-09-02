@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:sparkmanagerRH/constants/my_colors.dart';
-import 'package:sparkmanagerRH/constants/strings.dart';
+import 'package:sparkmanager_rh/constants/my_colors.dart';
+import 'package:sparkmanager_rh/constants/strings.dart';
 import 'package:flutter/material.dart';
 
-import 'package:sparkmanagerRH/data/models/character.dart';
+import 'package:sparkmanager_rh/data/models/character.dart';
 
 class CharacterItem extends StatelessWidget {
   final Character character;

@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sparkmanagerRH/presentation/screens/transaction/widgets/loadTransaction.dart';
-import 'package:sparkmanagerRH/presentation/widgets/imageview.dart';
+import 'package:sparkmanager_rh/presentation/screens/transaction/widgets/loadTransaction.dart';
+import 'package:sparkmanager_rh/presentation/widgets/imageview.dart';
 import 'widgets/cardTransaction.dart';
 import 'package:http/http.dart' as http;
 

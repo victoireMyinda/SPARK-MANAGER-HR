@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/historiquepresence/widget/cardhistoriquepresence.dart';
+import 'package:sparkmanager_rh/data/repository/signUp_repository.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/historiquepresence/widget/cardhistoriquepresence.dart';
 import 'package:lottie/lottie.dart';
 
 class HistoriquePresence extends StatefulWidget {

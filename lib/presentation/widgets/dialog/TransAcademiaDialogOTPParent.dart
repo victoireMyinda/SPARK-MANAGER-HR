@@ -11,17 +11,17 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
-import 'package:sparkmanagerRH/presentation/widgets/buttons/buttonTransAcademia.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/TransAcademiaDialogError.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/TransAcademiaDialogSuccessAbonnement.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/loading.dialog.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/loading.dialogPhone.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/data/repository/signUp_repository.dart';
+import 'package:sparkmanager_rh/presentation/widgets/buttons/buttonTransAcademia.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/TransAcademiaDialogError.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/TransAcademiaDialogSuccessAbonnement.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/loading.dialog.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/loading.dialogPhone.dart';
 import 'package:http/http.dart' as http;
-import 'package:sparkmanagerRH/theme.dart';
+import 'package:sparkmanager_rh/theme.dart';
 
 class TransAcademiaDialogOTPParent {
   static show(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sparkmanagerRH/theme.dart';
+import 'package:sparkmanager_rh/theme.dart';
 
 class CardPayment extends StatefulWidget {
   const CardPayment({super.key});

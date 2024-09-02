@@ -1,7 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sparkmanagerRH/presentation/widgets/imageview.dart';
+import 'package:sparkmanager_rh/presentation/widgets/imageview.dart';
 
 // ignore: must_be_immutable
 class loadTransaction extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sparkmanagerRH/constants/my_colors.dart';
-import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/widget/cardagent.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/signupagent/signupvendeurstep1.dart';
-import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
-import 'package:sparkmanagerRH/presentation/widgets/appbarkelasi.dart';
+import 'package:sparkmanager_rh/constants/my_colors.dart';
+import 'package:sparkmanager_rh/data/repository/signUp_repository.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/agents/widget/cardagent.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/agents/signupagent/signupvendeurstep1.dart';
+import 'package:sparkmanager_rh/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
+import 'package:sparkmanager_rh/presentation/widgets/appbarkelasi.dart';
 import 'package:lottie/lottie.dart';
 
 class HoraireAgentScreen extends StatefulWidget {

@@ -4,17 +4,17 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
-import 'package:sparkmanagerRH/presentation/screens/login/widgets/appbarlogin.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/TransAcademiaDialogError.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/ValidationDialog.dart';
-import 'package:sparkmanagerRH/presentation/widgets/dialog/loading.dialog.dart';
-import 'package:sparkmanagerRH/presentation/widgets/inputs/nameField.dart';
+import 'package:sparkmanager_rh/data/repository/signUp_repository.dart';
+import 'package:sparkmanager_rh/presentation/screens/login/widgets/appbarlogin.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/TransAcademiaDialogError.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/ValidationDialog.dart';
+import 'package:sparkmanager_rh/presentation/widgets/dialog/loading.dialog.dart';
+import 'package:sparkmanager_rh/presentation/widgets/inputs/nameField.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:sparkmanagerRH/presentation/widgets/buttons/buttonTransAcademia.dart';
-import 'package:sparkmanagerRH/presentation/widgets/inputs/passwordTextField.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/presentation/widgets/buttons/buttonTransAcademia.dart';
+import 'package:sparkmanager_rh/presentation/widgets/inputs/passwordTextField.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {

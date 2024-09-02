@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
-import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:sparkmanagerRH/presentation/widgets/inputs/simplePhoneNumberField.dart';
-import 'package:sparkmanagerRH/routestack.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
+import 'package:sparkmanager_rh/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanager_rh/presentation/widgets/inputs/simplePhoneNumberField.dart';
+import 'package:sparkmanager_rh/routestack.dart';
 
 class TransAcademiaLoadingDialogPhone {
   static stop(BuildContext context) {

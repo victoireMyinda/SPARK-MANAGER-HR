@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sparkmanagerRH/theme.dart';
+import 'package:sparkmanager_rh/theme.dart';
 
 class CardNumberOfCourse extends StatefulWidget {
   const CardNumberOfCourse({super.key});
