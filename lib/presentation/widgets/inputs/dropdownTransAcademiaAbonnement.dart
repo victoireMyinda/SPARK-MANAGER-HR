@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:location_agent/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
-import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanagerRH/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
+import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
 import 'package:http/http.dart' as http;
 
 class TransAcademiaDropdownAbonnement extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:location_agent/data/repository/signUp_repository.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardagent.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
-import 'package:location_agent/presentation/screens/signupagent/signupagent.dart';
-import 'package:location_agent/presentation/widgets/appbarkelasi.dart';
+import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/widget/cardagent.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
+import 'package:sparkmanagerRH/presentation/screens/signupagent/signupagent.dart';
+import 'package:sparkmanagerRH/presentation/widgets/appbarkelasi.dart';
 import 'package:lottie/lottie.dart';
 
 class ListeAgentsScreen extends StatefulWidget {

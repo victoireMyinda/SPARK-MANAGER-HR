@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:location_agent/presentation/screens/transaction/widgets/loadTransaction.dart';
-import 'package:location_agent/presentation/widgets/imageview.dart';
+import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanagerRH/presentation/screens/transaction/widgets/loadTransaction.dart';
+import 'package:sparkmanagerRH/presentation/widgets/imageview.dart';
 import 'package:http/http.dart' as http;
 
 // ignore: must_be_immutable

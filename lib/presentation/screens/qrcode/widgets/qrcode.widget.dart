@@ -1,7 +1,7 @@
 // import 'package:adaptive_theme/adaptive_theme.dart';
 // import 'package:flutter/material.dart';
 // import 'package:qr_flutter/qr_flutter.dart';
-// import 'package:location_agent/theme.dart';
+// import 'package:sparkmanagerRH/theme.dart';
 
 // // class QrCodeWidget extends StatefulWidget {
 // //   final String value;

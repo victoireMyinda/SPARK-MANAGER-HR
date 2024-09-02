@@ -2,9 +2,9 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
-import 'package:location_agent/presentation/widgets/inputs/simplePhoneNumberField.dart';
-import 'package:location_agent/routestack.dart';
+import 'package:sparkmanagerRH/presentation/widgets/buttons/buttonTransAcademia.dart';
+import 'package:sparkmanagerRH/presentation/widgets/inputs/simplePhoneNumberField.dart';
+import 'package:sparkmanagerRH/routestack.dart';
 
 class TransAcademiaDialogVersion {
   static stop(BuildContext context) {

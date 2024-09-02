@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:location_agent/presentation/screens/login/login_screen.dart';
+import 'package:sparkmanagerRH/presentation/screens/login/login_screen.dart';
 
 
 class Routes {

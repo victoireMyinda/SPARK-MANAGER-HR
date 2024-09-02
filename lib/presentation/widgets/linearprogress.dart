@@ -1,5 +1,5 @@
-import 'package:location_agent/theme.dart';
-import 'package:location_agent/utils/color.util.dart';
+import 'package:sparkmanagerRH/theme.dart';
+import 'package:sparkmanagerRH/utils/color.util.dart';
 import 'package:flutter/material.dart';
 
 

@@ -1,9 +1,9 @@
-import 'package:location_agent/theme.dart';
+import 'package:sparkmanagerRH/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:location_agent/utils/color.util.dart';
+import 'package:sparkmanagerRH/utils/color.util.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:location_agent/theme.dart';
+import 'package:sparkmanagerRH/theme.dart';
 
 // class MyCacheManager {
 //   final _storage = FirebaseStorage(

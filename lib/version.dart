@@ -3,8 +3,8 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
+import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanagerRH/presentation/widgets/buttons/buttonTransAcademia.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class VersionScreen extends StatefulWidget {

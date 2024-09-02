@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:location_agent/data/repository/signUp_repository.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
-import 'package:location_agent/presentation/screens/home/widgets/CardPresence.dart';
-import 'package:location_agent/presentation/screens/home/widgets/cardPresenceToday.dart';
-import 'package:location_agent/presentation/screens/setting/setting.dart';
-import 'package:location_agent/presentation/widgets/imageview.dart';
-import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
+import 'package:sparkmanagerRH/presentation/screens/home/widgets/CardPresence.dart';
+import 'package:sparkmanagerRH/presentation/screens/home/widgets/cardPresenceToday.dart';
+import 'package:sparkmanagerRH/presentation/screens/setting/setting.dart';
+import 'package:sparkmanagerRH/presentation/widgets/imageview.dart';
+import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
 import 'package:lottie/lottie.dart';
 import 'widgets/cardMenu.dart';
 import 'package:toast/toast.dart';

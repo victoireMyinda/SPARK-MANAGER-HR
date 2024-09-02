@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/detailhistoriqueagent.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/historiquepresence/detailhistoriqueagent.dart';
 
 class CardHistoriquePresence extends StatefulWidget {
   final Map? data;

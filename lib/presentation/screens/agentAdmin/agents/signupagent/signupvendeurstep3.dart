@@ -1,21 +1,21 @@
 // import 'package:adaptive_theme/adaptive_theme.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
-// import 'package:location_agent/constants/my_colors.dart';
-// import 'package:location_agent/data/repository/signUp_repository.dart';
-// import 'package:location_agent/presentation/screens/agentAdmin/agents/listeagent.dart';
-// import 'package:location_agent/presentation/widgets/appbarkelasi.dart';
-// import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
-// import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogError.dart';
-// import 'package:location_agent/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
-// import 'package:location_agent/presentation/widgets/dialog/loading.dialog.dart';
-// import 'package:location_agent/presentation/widgets/inputs/dateField.dart';
-// import 'package:location_agent/presentation/widgets/inputs/dropdownTransAcademia.dart';
-// import 'package:location_agent/presentation/widgets/inputs/dropdowncream.dart';
-// import 'package:location_agent/presentation/widgets/inputs/nameField.dart';
-// import 'package:location_agent/presentation/widgets/stepIndicator.dart';
-// import 'package:location_agent/sizeconfig.dart';
+// import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
+// import 'package:sparkmanagerRH/constants/my_colors.dart';
+// import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
+// import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/listeagent.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/appbarkelasi.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/buttons/buttonTransAcademia.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/dialog/TransAcademiaDialogError.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/dialog/TransAcademiaDialogSuccess.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/dialog/loading.dialog.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/inputs/dateField.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/inputs/dropdownTransAcademia.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/inputs/dropdowncream.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/inputs/nameField.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/stepIndicator.dart';
+// import 'package:sparkmanagerRH/sizeconfig.dart';
 
 // class SignupVendeurStep3 extends StatefulWidget {
 //   const SignupVendeurStep3({super.key});

@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/agents/detailagent.dart';
+import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/detailagent.dart';
 
 class CartdAgent extends StatefulWidget {
  final Map? data;

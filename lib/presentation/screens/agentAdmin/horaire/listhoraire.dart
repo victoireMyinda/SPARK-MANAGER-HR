@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:location_agent/data/repository/signUp_repository.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/horaire/signuphoraire.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/horaire/widget/cardhoraire.dart';
+import 'package:sparkmanagerRH/data/repository/signUp_repository.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/widget/cardplaceholderagent.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/horaire/signuphoraire.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/horaire/widget/cardhoraire.dart';
 import 'package:lottie/lottie.dart';
 
 class HorairesScreen extends StatefulWidget {

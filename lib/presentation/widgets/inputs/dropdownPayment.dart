@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/foundation.dart';
-import 'package:location_agent/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
-import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
-import 'package:location_agent/presentation/widgets/dialog/ValidationDialog.dart';
+import 'package:sparkmanagerRH/business_logic/cubit/abonnement/cubit/abonnement_cubit.dart';
+import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
+import 'package:sparkmanagerRH/presentation/widgets/dialog/ValidationDialog.dart';
 
 class TransAcademiaDropdownPayment extends StatefulWidget {
   const TransAcademiaDropdownPayment({

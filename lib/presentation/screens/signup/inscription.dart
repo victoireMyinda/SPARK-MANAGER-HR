@@ -2,10 +2,10 @@
 // import 'package:adaptive_theme/adaptive_theme.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:location_agent/business_logic/cubit/signup/cubit/signup_cubit.dart';
-// import 'package:location_agent/presentation/screens/login/login_screen.dart';
-// import 'package:location_agent/presentation/widgets/buttons/buttonTransAcademia.dart';
-// import 'package:location_agent/theme.dart';
+// import 'package:sparkmanagerRH/business_logic/cubit/signup/cubit/signup_cubit.dart';
+// import 'package:sparkmanagerRH/presentation/screens/login/login_screen.dart';
+// import 'package:sparkmanagerRH/presentation/widgets/buttons/buttonTransAcademia.dart';
+// import 'package:sparkmanagerRH/theme.dart';
 // import 'package:toast/toast.dart';
 
 // class Inscription extends StatefulWidget {

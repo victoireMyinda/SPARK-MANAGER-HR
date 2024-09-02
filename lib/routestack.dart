@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/agents/listeagent.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/horaire/listhoraire.dart';
-import 'package:location_agent/presentation/screens/agentAdmin/horaire/signuphoraire.dart';
-import 'package:location_agent/presentation/screens/home/home_screen.dart';
-import 'package:location_agent/presentation/screens/setting/setting.dart';
-import 'package:location_agent/sizeconfig.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/agents/listeagent.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/historiquepresence/historiquepresence.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/horaire/listhoraire.dart';
+import 'package:sparkmanagerRH/presentation/screens/agentAdmin/horaire/signuphoraire.dart';
+import 'package:sparkmanagerRH/presentation/screens/home/home_screen.dart';
+import 'package:sparkmanagerRH/presentation/screens/setting/setting.dart';
+import 'package:sparkmanagerRH/sizeconfig.dart';
 
 class RouteStack extends StatefulWidget {
   const RouteStack({Key? key}) : super(key: key);
