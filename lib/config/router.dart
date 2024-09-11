@@ -33,10 +33,10 @@ List<GetPage<dynamic>> getPages() {
         name: '/login',
         page: () => const LoginScreen(),
         transition: Transition.cupertino),
-    GetPage(
-        name: '/signupStep1',
-        page: () => const SignupStep1(),
-        transition: Transition.cupertino),
+    // GetPage(
+    //     name: '/signupStep1',
+    //     page: () => const SignupStep1(),
+    //     transition: Transition.cupertino),
     GetPage(
         name: '/version',
         page: () => const VersionScreen(),
@@ -45,14 +45,14 @@ List<GetPage<dynamic>> getPages() {
         name: '/refresh',
         page: () => const RefreshCheck(),
         transition: Transition.cupertino),
-    GetPage(
-        name: '/signupStep3',
-        page: () => SignupStep3(backNavigation: false,),
-        transition: Transition.cupertino),
-    GetPage(
-        name: '/signupStep2',
-        page: () => const SignupStep2(),
-        transition: Transition.cupertino),
+    // GetPage(
+    //     name: '/signupStep3',
+    //     page: () => SignupStep3(backNavigation: false,),
+    //     transition: Transition.cupertino),
+    // GetPage(
+    //     name: '/signupStep2',
+    //     page: () => const SignupStep2(),
+    //     transition: Transition.cupertino),
     GetPage(
         name: '/signup',
         page: () => Signup(backNavigation: true,),
